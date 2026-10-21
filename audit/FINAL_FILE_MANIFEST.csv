@@ -1,0 +1,200 @@
+path,category,authoritative,generated_or_source,required_for_submission,description
+code/__init__.py,source code,yes,source,yes,"FEM, experiment, plotting or orchestration source code"
+code/baseline.py,source code,yes,source,yes,"FEM, experiment, plotting or orchestration source code"
+code/capacitance.py,source code,yes,source,yes,"FEM, experiment, plotting or orchestration source code"
+code/domain_study.py,source code,yes,source,yes,"FEM, experiment, plotting or orchestration source code"
+code/fem_solver.py,source code,yes,source,yes,"FEM, experiment, plotting or orchestration source code"
+code/final_capacitance.py,source code,yes,source,yes,"FEM, experiment, plotting or orchestration source code"
+code/gate_g_air.py,source code,yes,source,yes,"FEM, experiment, plotting or orchestration source code"
+code/geometry.py,source code,yes,source,yes,"FEM, experiment, plotting or orchestration source code"
+code/graded_study.py,source code,yes,source,yes,"FEM, experiment, plotting or orchestration source code"
+code/impedance.py,source code,yes,source,yes,"FEM, experiment, plotting or orchestration source code"
+code/materials.py,source code,yes,source,yes,"FEM, experiment, plotting or orchestration source code"
+code/plotting.py,source code,yes,source,yes,"FEM, experiment, plotting or orchestration source code"
+code/run_all.py,source code,yes,source,yes,"FEM, experiment, plotting or orchestration source code"
+code/uniform_convergence.py,source code,yes,source,yes,"FEM, experiment, plotting or orchestration source code"
+code/verification.py,source code,yes,source,yes,"FEM, experiment, plotting or orchestration source code"
+code/tests/conftest.py,tests,yes,source,yes,Automated regression tests
+code/tests/test_air_only.py,tests,yes,source,yes,Automated regression tests
+code/tests/test_domain_study.py,tests,yes,source,yes,Automated regression tests
+code/tests/test_final_capacitance.py,tests,yes,source,yes,Automated regression tests
+code/tests/test_geometry.py,tests,yes,source,yes,Automated regression tests
+code/tests/test_graded_study.py,tests,yes,source,yes,Automated regression tests
+code/tests/test_impedance.py,tests,yes,source,yes,Automated regression tests
+code/tests/test_materials_and_baseline.py,tests,yes,source,yes,Automated regression tests
+code/tests/test_uniform_convergence.py,tests,yes,source,yes,Automated regression tests
+code/tests/test_verification.py,tests,yes,source,yes,Automated regression tests
+tables/Z0_convergence.csv,results table,supporting,generated,yes,Machine-readable numerical evidence
+tables/baseline_checks.csv,results table,supporting,generated,yes,Machine-readable numerical evidence
+tables/capacitance_asymptotic_diagnostics.csv,results table,supporting,generated,yes,Machine-readable numerical evidence
+tables/capacitance_extraction.csv,results table,supporting,generated,yes,Machine-readable numerical evidence
+tables/domain_mesh_adequacy.csv,results table,supporting,generated,yes,Machine-readable numerical evidence
+tables/domain_truncation.csv,results table,yes,generated,yes,Machine-readable numerical evidence
+tables/efficiency_targets.csv,results table,supporting,generated,yes,Machine-readable numerical evidence
+tables/engineering_benchmarks.csv,results table,yes,generated,yes,Machine-readable numerical evidence
+tables/epsilon_eff_convergence.csv,results table,supporting,generated,yes,Machine-readable numerical evidence
+tables/final_air_capacitance.csv,results table,yes,generated,yes,Machine-readable numerical evidence
+tables/final_capacitance_convergence.csv,results table,yes,generated,yes,Machine-readable numerical evidence
+tables/final_capacitance_selection.csv,results table,yes,generated,yes,Machine-readable numerical evidence
+tables/final_characteristic_impedance.csv,results table,yes,generated,yes,Machine-readable numerical evidence
+tables/final_dielectric_capacitance.csv,results table,yes,generated,yes,Machine-readable numerical evidence
+tables/final_effective_permittivity.csv,results table,yes,generated,yes,Machine-readable numerical evidence
+tables/final_engineering_results.csv,results table,yes,generated,yes,Machine-readable numerical evidence
+tables/graded_convergence.csv,results table,yes,generated,yes,Machine-readable numerical evidence
+tables/matched_dielectric_air.csv,results table,supporting,generated,yes,Machine-readable numerical evidence
+tables/matched_work_comparison.csv,results table,supporting,generated,yes,Machine-readable numerical evidence
+tables/mms_convergence.csv,results table,yes,generated,yes,Machine-readable numerical evidence
+tables/reference_stability.csv,results table,supporting,generated,yes,Machine-readable numerical evidence
+tables/uniform_convergence.csv,results table,yes,generated,yes,Machine-readable numerical evidence
+tables/uniform_vs_graded.csv,results table,supporting,generated,yes,Machine-readable numerical evidence
+logs/M7_preflight.txt,logs,yes,generated,yes,Gate audit or diagnostic log
+logs/M8_preflight.txt,logs,yes,generated,yes,Gate audit or diagnostic log
+logs/gate_A_verification.txt,logs,yes,generated,yes,Gate audit or diagnostic log
+logs/gate_B_checks.txt,logs,yes,generated,yes,Gate audit or diagnostic log
+logs/gate_C_domain.txt,logs,yes,generated,yes,Gate audit or diagnostic log
+logs/gate_D_uniform.txt,logs,yes,generated,yes,Gate audit or diagnostic log
+logs/gate_E_graded.txt,logs,yes,generated,yes,Gate audit or diagnostic log
+logs/gate_F_capacitance.txt,logs,yes,generated,yes,Gate audit or diagnostic log
+logs/gate_G_air.txt,logs,yes,generated,yes,Gate audit or diagnostic log
+logs/gate_G_mesh_identity.txt,logs,yes,generated,yes,Gate audit or diagnostic log
+logs/gate_H_impedance.txt,logs,yes,generated,yes,Gate audit or diagnostic log
+logs/gate_I_reproducibility.txt,logs,yes,generated,yes,Gate audit or diagnostic log
+logs/gate_J_traceability.txt,logs,yes,generated,yes,Gate audit or diagnostic log
+logs/phase_2_5_audit.txt,logs,yes,generated,yes,Gate audit or diagnostic log
+logs/run_all_quick_smoke.txt,logs,yes,generated,yes,Gate audit or diagnostic log
+data/processed/final_engineering_mesh.npz,frozen mesh,yes,generated,yes,Frozen final mesh reused by Gate G
+report/main.tex,report,yes,source,yes,Reviewed report candidate; Gate-E integration limitation disclosed
+report/references.bib,report,yes,source,yes,Report bibliography
+report/final_report.pdf,report,yes,generated,yes,Compiled 19-page reviewed report candidate
+presentation/main.tex,presentation,yes,source,yes,Accepted Beamer presentation source
+presentation/final_presentation.pdf,presentation,yes,generated,yes,Compiled 12-slide reviewed presentation
+audit/FINAL_AUDIT.md,audit,yes,generated,yes,Final A-J audit
+audit/FINAL_RESULTS.md,audit,yes,generated,yes,Concise final authoritative results
+audit/final_traceability_matrix.csv,audit,yes,generated,yes,Machine-readable final claim traceability matrix
+audit/final_traceability_matrix.md,audit,yes,generated,yes,Readable final claim traceability matrix
+audit/HUMAN_COMPLETION_REQUIRED.md,audit,yes,generated,yes,Human-only placeholders before submission
+audit/environment.md,documentation,yes,generated,yes,Environment and reproducibility notes
+requirements.txt,environment,yes,source,yes,Validated Python package versions
+pytest.ini,tests,yes,source,yes,Pytest collection configuration excluding copied submission package duplicates from root test runs
+report/report_evidence_map.md,documentation,yes,source,yes,Recovered report evidence map
+audit/REPORT_RECOVERY.md,audit,yes,source,yes,"Report restoration, six-member confirmation and packaging checks"
+audit/FINAL_HASHES.sha256,audit,yes,generated,yes,Checksums for critical package artifacts
+PROJECT_STATUS.md,audit,yes,source,yes,Current review status and reopened Gate-E validation
+code/report_evidence.py,source code,yes,source,yes,"Report tables, HJ discrepancies and geometry audit; no production FEM solve"
+tables/graded_reference_geometry_audit.csv,results table,yes,generated,yes,Triangle crossing checks for G0-G4 against R2
+report/figures/mms_convergence_report.png,report figure,yes,generated,yes,Same frozen MMS errors with readable tick labels
+audit/RUBRIC_REVIEW.md,audit,yes,source,yes,"Requested corrections, actual defect, scope, regression and remaining validation"
+logs/rubric_review_checks.txt,logs,yes,generated,yes,Current numerical preservation and deliverable checks
+report/tables/benchmark_specification.tex,report evidence,yes,generated,yes,Deterministic report table or fitted value from frozen CSVs
+report/tables/evidence_numbers.tex,report evidence,yes,generated,yes,Deterministic report table or fitted value from frozen CSVs
+report/tables/grading_rule.tex,report evidence,yes,generated,yes,Deterministic report table or fitted value from frozen CSVs
+report/tables/mms_fit_summary.csv,report evidence,yes,generated,yes,Deterministic report table or fitted value from frozen CSVs
+report/tables/mms_refinement.tex,report evidence,yes,generated,yes,Deterministic report table or fitted value from frozen CSVs
+report/tables/reference_fit_summary.csv,report evidence,yes,generated,yes,Deterministic report table or fitted value from frozen CSVs
+report/tables/reference_stability.tex,report evidence,yes,generated,yes,Deterministic report table or fitted value from frozen CSVs
+code/overlay_energy.py,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
+code/adaptive_analysis.py,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
+code/adaptive_mesh.py,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
+code/residual_indicator.py,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
+code/residual_adaptive_study.py,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
+code/tests/test_residual_adaptive.py,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
+config/adaptive_extension.json,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/adaptive_refinement_results.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/uniform_graded_overlay_comparison.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/comparison_timing_samples.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/three_way_comparison.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/adaptive_matched_work.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/adaptive_timing_samples.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/adaptive_matched_targets.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/adaptive_validation.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/experiment_metadata.json,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/adaptive_localization.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/reference_replay.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/A0.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/M3.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/M2.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/A1.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/A3.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/M0.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/M1.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/A2.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/A6.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/M5.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/M4.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/A7.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/A5.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/A4.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/G3.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/G2.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/G0.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/G1.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/G4.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/B5.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/B4.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/B6.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/B7.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/B3.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/B2.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/B0.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_extension/meshes/B1.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/adaptive_refinement_results.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/uniform_graded_overlay_comparison.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/comparison_timing_samples.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/README.md,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/three_way_comparison.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/adaptive_matched_work.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/adaptive_timing_samples.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/adaptive_matched_targets.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/adaptive_validation.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/adaptive_localization.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/reference_replay.csv,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/A0.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/M3.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/M2.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/A1.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/A3.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/M0.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/M1.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/A2.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/A6.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/M5.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/M4.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/A7.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/A5.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/A4.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/G3.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/G2.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/G0.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/G1.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/G4.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/B5.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/B4.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/B6.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/B7.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/B3.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/B2.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/B0.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+results/adaptive_attempt_01_invalid_companion/meshes/B1.npz,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+figures/adaptive_extension/F_ADAPTIVE_MESH_EVOLUTION.pdf,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+figures/adaptive_extension/F_ADAPTIVE_WORK_PRECISION.png,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+figures/adaptive_extension/F_ADAPTIVE_MESH_EVOLUTION.png,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+figures/adaptive_extension/F_ADAPTIVE_WORK_PRECISION.pdf,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+figures/adaptive_extension/F_ADAPTIVE_CAPACITANCE.png,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+figures/adaptive_extension/F_ADAPTIVE_CAPACITANCE.pdf,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+figures/adaptive_extension/F_ADAPTIVE_ESTIMATOR.pdf,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+figures/adaptive_extension/F_ADAPTIVE_ESTIMATOR.png,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+figures/adaptive_extension/adaptive_final_mesh_slide.png,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+figures/adaptive_extension/adaptive_final_mesh_slide.pdf,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+figures/adaptive_extension/adaptive_dofs_slide.png,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+figures/adaptive_extension/adaptive_dofs_slide.pdf,adaptive extension,yes,generated,yes,Residual-adaptive evidence; historical numerical files preserved
+requirements-adaptive.txt,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
+logs/PRE_ADAPTIVE_HYPOTHESIS.md,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
+logs/adaptive_symmetry_preflight.md,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
+logs/adaptive_frozen_inputs.json,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
+logs/adaptive_final_validation.txt,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
+ADAPTIVE_RESEARCH_QUESTIONS.md,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
+CHANGELOG_ADAPTIVE.md,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
+report/sections/residual_adaptive.tex,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
+report/tables/adaptive_sequence.tex,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
+report/tables/adaptive_targets.tex,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
+audit/residual_adaptive_method.md,adaptive extension,yes,source,yes,Residual-adaptive evidence; historical numerical files preserved
