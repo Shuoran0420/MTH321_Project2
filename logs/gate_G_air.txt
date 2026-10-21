@@ -1,0 +1,27 @@
+Gate G matched all-air solve and effective permittivity
+
+Gate F status: PASS; acceptance_path=M7_ASYMPTOTIC_RESOURCE_FALLBACK
+FINAL_MESH_ID: uniform_M7_8H_neumann_P1_v1
+FINAL_MESH_SHA256: 06b7c06b25667d77c4292d49764ec42234006b041eab922e5563dfb8669b6f75
+dielectric replay CE: 1.2061977369391071e-10
+authoritative Gate-F CE: 1.2061977369391071e-10
+dielectric replay relative difference: 0.0000000000000000e+00
+C_dielectric: 1.2061977369391071e-10
+C_air: 3.5968210876660980e-11
+epsilon_eff: 3.3535105237102121e+00
+M5 epsilon_eff: 3.3588237562060659e+00
+M6 epsilon_eff: 3.3555072485970112e+00
+M7 epsilon_eff: 3.3535105237102121e+00
+successive epsilon_eff changes: M5->M6=9.8837742354493385e-04, M6->M7=5.9541333557230935e-04
+air CE/CQ consistency delta_EQ: 1.5404762981951632e-12
+air charge-balance defect: 2.4983420887246372e-11
+air residual inf: 1.2449070739492660e-24; normalized=3.3612410721146262e-14
+air symmetry error: 1.3622956684184996e-12
+same-mesh result: True
+same-DOF result: True
+same-boundary result: True
+same-sparsity result: True
+physical ordering result: True
+physical epsilon_eff range result: True
+Limitations: Gate F used the M7 asymptotic/resource fallback; epsilon_eff is a matched FEM ratio, not an exact material constant.
+Gate G status: PASS

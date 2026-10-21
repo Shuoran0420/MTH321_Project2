@@ -1,0 +1,21 @@
+Project 2 quick smoke validation
+
+Mode: quick
+Scope: non-destructive checks only; authoritative full-resolution tables, figures, mesh artifacts and logs are not regenerated.
+FOUND: tables/final_dielectric_capacitance.csv
+FOUND: tables/final_air_capacitance.csv
+FOUND: tables/final_effective_permittivity.csv
+FOUND: tables/final_characteristic_impedance.csv
+FOUND: data/processed/final_engineering_mesh.npz
+FINAL_MESH_ID: uniform_M7_8H_neumann_P1_v1
+FINAL_MESH_SHA256: 06b7c06b25667d77c4292d49764ec42234006b041eab922e5563dfb8669b6f75
+mesh source: data/processed/final_engineering_mesh.npz
+mesh size: elements=720896, DOFs=362112
+C_dielectric=1.2061977369391071e-10 F/m
+C_air=3.5968210876660980e-11 F/m
+epsilon_eff=3.3535105237102121e+00
+Z0_FEM=5.0641973836627407e+01 ohm
+Hammerstad_Jensen_Z0=5.0200690000155610e+01 ohm
+IPC_2141_Z0=4.9393389422188392e+01 ohm
+quick_runtime_s=0.074342
+Quick smoke status: PASS

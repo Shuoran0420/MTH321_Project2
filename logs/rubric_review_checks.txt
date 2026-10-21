@@ -1,0 +1,14 @@
+Rubric correction checks: 2026-10-19 Asia/Shanghai
+Test command: pytest -q
+Test result: 33 passed in 6.77 seconds; no skips
+Report compile: PASS; 19 pages; no unresolved references/citations or overfull boxes
+PPT compile: PASS; 12 slides; no unresolved references/citations or overfull boxes
+Group C and all six supplied student identities: PASS
+MTH321 right-hand report header: PASS on all 19 pages
+Original CSV row/field values: unchanged; HJ discrepancy and current scope fields only appended
+Frozen mesh and all original figure files: byte-identical to pre-review snapshot
+No production FEM study or final-resolution solve rerun; regression fixtures only
+Traceability: 16 PASS; one graded efficiency claim requires revalidation
+Gate E: REVALIDATION REQUIRED; common-overlay integration or converged quadrature remains
+Overall technical project: NOT YET COMPLETE
+Human work: six individual contribution statements; user confirmed six-member instructor approval

@@ -1,0 +1,25 @@
+Gate B baseline microstrip checks
+Diagnosed matrix: correctly Dirichlet-eliminated free-DOF stiffness matrix.
+Charge extraction: full pre-elimination stiffness reaction K*u, summed on trace Dirichlet dofs.
+Trace dof count: 26; ground dof count: 99; free dof count: 11953
+
+Conditioning note: the physical stiffness matrix includes epsilon_0 in SI units, so absolute eigenvalues are small.
+For SPD, the sign of lambda_min is the key positivity check; for refinement comparisons, use the condition ratios.
+The scaled condition estimate uses D^{-1/2} A D^{-1/2} and should be interpreted as a diagonal-scaled diagnostic, not the physical matrix condition number.
+
+min_phi: value=0.0000000000000000e+00 criterion=>= -1e-10 V, discrete maximum principle tolerance status=PASS
+max_phi: value=1.0000000000000000e+00 criterion=<= 1+1e-10 V, discrete maximum principle tolerance status=PASS
+symmetry_relative_error: value=3.2440209898768577e-14 criterion=< 1e-10 for symmetric structured mesh and direct solve status=PASS
+matrix_symmetry_error: value=0.0000000000000000e+00 criterion=< 1e-13, reduced free-DOF matrix should be symmetric to roundoff status=PASS
+lambda_min: value=5.9181765112820813e-15 criterion=> 0, reduced Dirichlet system is SPD status=PASS
+lambda_max: value=1.0606770818238813e-09 criterion=> lambda_min, finite extremal eigenvalue estimate status=PASS
+condition_estimate: value=1.7922363075887744e+05 criterion=finite and > 1; ratio is more informative than small SI-scaled lambda_min status=PASS
+scaled_condition_estimate: value=1.4249857138986654e+04 criterion=finite and > 1 for diagonally scaled reduced matrix status=PASS
+residual_inf: value=3.1019272970738538e-25 criterion=< 1e-18 absolute free-DOF residual for direct solve at this scale status=PASS
+CE: value=1.2232594052505363e-10 criterion=> 0 and finite status=PASS
+CQ: value=1.2232594052505332e-10 criterion=> 0 and finite status=PASS
+delta_EQ: value=2.5357886346588496e-15 criterion=< 1e-10 for reaction-energy algebraic consistency status=PASS
+charge_balance_defect: value=6.9734187453118358e-15 criterion=< 1e-10 for trace plus ground reactions with homogeneous Neumann far boundary status=PASS
+
+Gate B status: PASS
+Interpretation: CE/CQ consistency checks implementation wiring only; it does not prove spatial convergence.

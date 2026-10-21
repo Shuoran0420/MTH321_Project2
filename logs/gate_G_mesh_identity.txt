@@ -1,0 +1,19 @@
+Gate G frozen mesh identity checks
+
+FINAL_MESH_ID: uniform_M7_8H_neumann_P1_v1
+FINAL_MESH_SHA256: 06b7c06b25667d77c4292d49764ec42234006b041eab922e5563dfb8669b6f75
+mesh_artifact: data/processed/final_engineering_mesh.npz
+points shape: (362112, 2)
+elements shape: (720896, 3)
+exact_points_equal: True
+exact_elements_equal: True
+trace_nodes_equal: True
+ground_nodes_equal: True
+far_nodes_equal: True
+total_DOFs_equal: True
+free_DOFs_equal: True
+matrix_shape_equal: True
+matrix_NNZ_equal: True
+matrix_indptr_equal: True
+matrix_indices_equal: True
+MATCHED_MESH_IDENTITY: PASS
