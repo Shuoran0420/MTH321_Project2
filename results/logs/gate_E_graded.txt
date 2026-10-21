@@ -1,0 +1,26 @@
+HISTORICAL SNAPSHOT: generated before the 2026-10-19 graded common-refinement audit. Current status is in audit/RUBRIC_REVIEW.md; the former PASS does not close the new integration issue.
+
+Gate E graded/local refinement study
+
+Fixed problem: W/H=8, Hair/H=8, homogeneous Neumann far boundary, same trace/material/Dirichlet data as Gate D.
+Grading rule: deterministic dyadic coordinate subsets from the Gate-D refinement tree; all coordinates are representable on R2=M6.
+Lower corners use one extra target level in the early sequence, symmetrically left/right.
+G-levels: [(0, 0, 1, 2), (1, 1, 2, 3), (2, 1, 3, 4), (3, 2, 4, 5), (4, 3, 5, 5)]
+Reference method: evaluate graded P1 gradients on the common R2 mesh and integrate the epsilon-weighted energy error; coefficient vectors are never subtracted directly.
+Reference sensitivities: [0.011486815890657117, 0.02915828956511806, 0.04382725855419912, 0.14212357897673858, 0.3008473363716831]
+Target-accuracy comparisons:
+- target 0.4: DOF ratio U/G=0.798, NNZ ratio U/G=0.783, time ratio U/G=0.793, support=FORMALLY_SUPPORTED
+- target 0.3: DOF ratio U/G=0.783, NNZ ratio U/G=0.773, time ratio U/G=0.738, support=FORMALLY_SUPPORTED
+- target 0.2: DOF ratio U/G=0.470, NNZ ratio U/G=0.453, time ratio U/G=0.426, support=REFERENCE_SENSITIVITY_LIMITED_EXPLORATORY
+Formal efficiency conclusion uses only targets 0.40 and 0.30. Target 0.20 is exploratory because its graded interpolation uses reference-sensitive G3.
+Matched-work comparisons:
+- M1 vs G0: errors 0.403041 vs 0.423509, DOFs 114 vs 123
+- M2 vs G1: errors 0.262690 vs 0.259956, DOFs 404 vs 537
+- M3 vs G2: errors 0.169382 vs 0.228445, DOFs 1512 vs 1422
+Efficiency interpretation: for the tested targets, ratios below 1 mean uniform refinement used fewer resources than the graded sequence.
+Production mesh candidate: G2 selected by lowest R2 energy error among reference-stable graded meshes.
+The candidate is only the best reference-stable graded candidate, not a final converged capacitance mesh; Gate F must compare it against substantially finer uniform/reference meshes.
+Matched-work pairs: 3
+Target rows: 3
+Limitation: this is deterministic coordinate-line grading rather than a residual-estimator adaptive FEM; it may refine strips near corners rather than the mathematically minimal patch set.
+Gate E status: PASS

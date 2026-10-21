@@ -1,0 +1,52 @@
+Phase 2.5 audit: Presentation Corrections + Numerical Diagnostics Upgrade
+
+Gate A status: PASS
+Gate B status: PASS
+pytest status: PASS (7 passed)
+
+CE before: 1.2232594052505363e-10 F/m
+CE after:  1.2232594052505363e-10 F/m
+CQ before: 1.2232594052505332e-10 F/m
+CQ after:  1.2232594052505332e-10 F/m
+delta_EQ before: 2.5357886346588496e-15
+delta_EQ after:  2.5357886346588496e-15
+
+matrix lambda_min: 5.918176511262385e-15
+matrix lambda_max: 1.0606770818238918e-09
+condition estimate: 179223.6307594757
+scaled lambda_min: 0.00014034243558085175
+scaled lambda_max: 1.9998596575644187
+scaled condition estimate: 14249.85713898554
+
+physical baseline result unchanged: YES
+
+Conditioning interpretation:
+The physical reduced stiffness matrix includes epsilon_0 in SI units, so absolute eigenvalues are small.
+The positive lambda_min supports SPD. The condition ratio is more informative than lambda_min alone.
+The scaled condition estimate is computed from D^(-1/2) A D^(-1/2); it is a diagonal-scaled diagnostic, not the physical matrix condition number.
+
+New/corrected figures:
+- figures/geometry_full_domain.png
+- figures/geometry_near_trace.png
+- figures/microstrip_mesh_full.png
+- figures/microstrip_mesh_near_trace.png
+- figures/energy_density_full_linear.png
+- figures/energy_density_near_trace.png
+- figures/energy_density_log.png
+- figures/electric_field_corner_zoom.png
+
+Acceptance checklist:
+1. Gate A remains PASS: PASS
+2. Gate B remains PASS: PASS
+3. pytest passes: PASS
+4. full-domain geometry figure is correct: PASS
+5. near-trace geometry explicitly labelled as zoom: PASS
+6. full and near-trace mesh figures exist: PASS
+7. energy-density visualisation improved: PASS
+8. log energy plot does not alter numerical data: PASS
+9. conditioning estimate documented: PASS
+10. CE/CQ unchanged except floating-point noise: PASS
+11. no new inconsistency introduced into tables/logs: PASS
+12. PROJECT_STATUS updated: PASS
+
+Phase 2.5 status: PASS
