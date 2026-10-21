@@ -1,0 +1,319 @@
+\section*{Project 2: 2D FEM Analysis of a Microstrip Transmission Line}
+
+\subsection*{Main Objective}
+
+The aim of this project is to use the Finite Element Method (FEM) to model a two-dimensional microstrip transmission-line cross-section and calculate its characteristic impedance \(Z_0\).
+
+The overall workflow is
+
+\[
+\text{Geometry}
+\rightarrow
+\text{PDE}
+\rightarrow
+\text{FEM}
+\rightarrow
+\text{Capacitance}
+\rightarrow
+\varepsilon_{\mathrm{eff}}
+\rightarrow
+Z_0.
+\]
+
+The main goal is not only to obtain a value close to \(50~\Omega\), but also to provide sufficient numerical evidence to show that the FEM result is reliable and reproducible.
+
+\subsection*{1. Physical and Mathematical Model}
+
+The microstrip cross-section contains:
+
+\begin{itemize}
+    \item an FR-4 substrate;
+    \item an air region;
+    \item a copper signal trace;
+    \item a ground plane.
+\end{itemize}
+
+The nominal geometric and material parameters are
+
+\[
+H = 1.6~\mathrm{mm},
+\qquad
+w = 3.0~\mathrm{mm},
+\qquad
+t = 0.035~\mathrm{mm},
+\]
+
+with substrate relative permittivity
+
+\[
+\varepsilon_r = 4.4.
+\]
+
+The electrostatic governing equation is
+
+\[
+-\nabla \cdot \left( \varepsilon \nabla \phi \right) = 0.
+\]
+
+The main boundary conditions are:
+
+\begin{itemize}
+    \item signal trace: \(\phi = V_0\);
+    \item ground plane: \(\phi = 0\);
+    \item artificial outer boundaries: homogeneous Neumann boundary conditions.
+\end{itemize}
+
+The conductor interior is excluded from the field domain and treated as an internal Dirichlet boundary.
+
+\subsection*{2. FEM Formulation}
+
+The weak form of the problem is
+
+\[
+\int_{\Omega}
+\varepsilon \nabla \phi \cdot \nabla v
+\, d\Omega
+=
+0,
+\qquad
+\forall v \in V_0.
+\]
+
+The problem is discretised using conforming triangular \(P_1\) finite elements.
+
+The FEM solution should provide:
+
+\begin{itemize}
+    \item electric potential \(\phi_h\);
+    \item electric-field magnitude \(\lvert E_h \rvert\);
+    \item electrostatic energy density.
+\end{itemize}
+
+The following numerical checks should also be performed:
+
+\begin{itemize}
+    \item potential bounds;
+    \item symmetry about \(x=0\);
+    \item matrix symmetry;
+    \item positive definiteness after Dirichlet elimination;
+    \item algebraic residual;
+    \item global charge balance.
+\end{itemize}
+
+\subsection*{3. Solver Verification}
+
+Before using the FEM solver for the microstrip problem, the numerical implementation should be tested using a problem with a known exact or manufactured solution.
+
+A mesh-refinement study should be carried out and should report:
+
+\begin{itemize}
+    \item error in a specified norm;
+    \item observed convergence order;
+    \item algebraic residual.
+\end{itemize}
+
+This step is used to confirm that the FEM implementation is working correctly before relying on the microstrip results.
+
+\subsection*{4. Domain-Truncation Study}
+
+The real air region is unbounded, but the computational model must use a finite domain.
+
+The following domain sizes should be tested:
+
+\[
+\left(
+\frac{W}{H},
+\frac{H_{\mathrm{air}}}{H}
+\right)
+=
+(3,3),
+(5,5),
+(8,8),
+(12,12).
+\]
+
+The near-trace mesh should remain fixed while the outer domain is extended.
+
+The capacitance values should be compared using the \(12H\) case as the tested reference.
+
+The smallest tested domain with less than \(1\%\) difference should be identified.
+
+The largest domain should also be repeated using a finer near-field mesh to check that the domain conclusion is not caused by discretisation error.
+
+\subsection*{5. Corner Singularity and Uniform Mesh Convergence}
+
+The electric field becomes strongly concentrated near the conductor corners, particularly near the lower corners where the conductor meets the air--substrate interface.
+
+A uniform mesh-refinement study should therefore be performed using the energy norm
+
+\[
+\|e\|_E^2
+=
+\int_{\Omega}
+\varepsilon
+\left|
+\nabla e
+\right|^2
+\, d\Omega.
+\]
+
+Since no exact solution is available for the full microstrip problem, a substantially finer FEM solution can be used as the numerical reference.
+
+When comparing solutions from different meshes, the coarse solution must be transferred correctly to the reference mesh before calculating the error.
+
+\subsection*{6. Graded or Local Refinement Study}
+
+A graded or locally refined mesh should also be tested, with more elements placed near the conductor corners.
+
+The graded strategy should be compared with uniform refinement using:
+
+\begin{itemize}
+    \item error versus degrees of freedom;
+    \item error versus matrix nonzeros;
+    \item error versus computational time.
+\end{itemize}
+
+The aim is to determine whether local refinement provides better cost--accuracy efficiency.
+
+The result should be reported honestly even if the tested graded strategy does not outperform uniform refinement.
+
+\subsection*{7. Capacitance Calculation}
+
+The electrostatic energy is
+
+\[
+W_e
+=
+\frac{1}{2}
+\int_{\Omega}
+\varepsilon
+\left|
+\nabla \phi
+\right|^2
+\, d\Omega.
+\]
+
+The energy-based capacitance is then
+
+\[
+C_E
+=
+\frac{2W_e}{V_0^2}.
+\]
+
+A charge-based capacitance \(C_Q\) should also be calculated from the conductor reaction.
+
+Agreement between \(C_E\) and \(C_Q\) can be used as an implementation consistency check, but mesh convergence must still be demonstrated separately.
+
+\subsection*{8. All-Air Solve and Effective Permittivity}
+
+After selecting the final FEM mesh, the problem should be solved again with
+
+\[
+\varepsilon_r = 1
+\]
+
+everywhere.
+
+The geometry, mesh, domain, element order, boundary conditions and solver settings must remain unchanged.
+
+This gives the all-air capacitance
+
+\[
+C_{\mathrm{air}}.
+\]
+
+The effective permittivity is then calculated using
+
+\[
+\varepsilon_{\mathrm{eff}}
+=
+\frac{C}{C_{\mathrm{air}}}.
+\]
+
+A basic physical check is
+
+\[
+1
+<
+\varepsilon_{\mathrm{eff}}
+<
+4.4.
+\]
+
+\subsection*{9. Characteristic Impedance}
+
+The characteristic impedance is calculated from the matched capacitance pair:
+
+\[
+Z_0
+=
+\frac{1}
+{c_0 \sqrt{C C_{\mathrm{air}}}},
+\]
+
+where \(c_0\) is the speed of light in vacuum.
+
+This is the final engineering result obtained from the FEM model.
+
+\subsection*{10. Engineering Validation}
+
+The FEM result should be compared with common microstrip engineering approximations, including:
+
+\begin{itemize}
+    \item Hammerstad--Jensen;
+    \item IPC-2141.
+\end{itemize}
+
+These formulas are used as independent engineering benchmarks.
+
+Agreement with these formulas can support the physical reasonableness of the FEM result, but it does not replace the numerical verification and mesh-convergence studies.
+
+\subsection*{Final Deliverables}
+
+The final project should include:
+
+\begin{itemize}
+    \item a LaTeX report of at least 8 pages;
+    \item reproducible FEM source code;
+    \item a README explaining how to run the project;
+    \item numerical results and figures;
+    \item presentation slides in PDF format;
+    \item AI transparency information;
+    \item individual contribution statements.
+\end{itemize}
+
+The presentation should summarise the complete numerical story:
+
+\[
+\text{Background}
+\rightarrow
+\text{Model}
+\rightarrow
+\text{Discretisation}
+\rightarrow
+\text{Verification}
+\rightarrow
+\text{Numerical Experiments}
+\rightarrow
+\text{Conclusions}.
+\]
+
+The presentation duration is approximately 10 minutes, followed by 3 minutes of questions.
+
+\subsection*{Summary}
+
+In summary, the task is not simply to calculate the microstrip characteristic impedance.
+
+The project requires us to:
+
+\begin{enumerate}
+    \item build the physical and mathematical model;
+    \item implement and verify the FEM solver;
+    \item study domain truncation;
+    \item investigate mesh convergence and corner effects;
+    \item compare uniform and graded refinement;
+    \item calculate \(C\), \(C_{\mathrm{air}}\), \(\varepsilon_{\mathrm{eff}}\) and \(Z_0\);
+    \item compare the FEM result with engineering formulas;
+    \item provide reproducible numerical evidence showing why the final result can be trusted.
+\end{enumerate}
