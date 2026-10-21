@@ -1,0 +1,614 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=2.05cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,graphicx,float,xcolor,hyperref,longtable,array,enumitem,fancyhdr}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{microtype}
+\graphicspath{{figures/}}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue}
+\definecolor{xjtblue}{HTML}{173F6B}
+\setlength{\headheight}{22pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{xjtblue}MTH321 Project 2}
+\fancyhead[R]{\small\color{xjtblue}MTH321}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.55pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{xjtblue}\leaders\hrule height \headrulewidth\hfill}}
+\fancypagestyle{cover}{
+  \fancyhf{}
+  \fancyhead[L]{\small\color{xjtblue}MTH321 Project 2}
+  \fancyhead[R]{\small\color{xjtblue}MTH321}
+  \renewcommand{\headrulewidth}{0.55pt}
+}
+\newcommand{\todo}[1]{\textcolor{red!70!black}{\textbf{[#1]}}}
+\newcommand{\epsr}{\varepsilon_r}
+\newcommand{\epseff}{\varepsilon_{\mathrm{eff}}}
+\newcommand{\Cair}{C_{\mathrm{air}}}
+\newcommand{\Zzero}{Z_0}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\input{tables/evidence_numbers.tex}
+\newcommand{\coverlogo}{%
+  \IfFileExists{figures/xjtlu_logo_blue.pdf}%
+    {\includegraphics[width=0.72\textwidth]{figures/xjtlu_logo_blue.pdf}}%
+    {\begin{minipage}{0.8\textwidth}\centering\vspace{1.2cm}
+       {\color{xjtblue}\LARGE\bfseries Xi'an Jiaotong-Liverpool University}\par
+       \vspace{0.9cm}\end{minipage}}}
+
+\begin{document}
+\begin{titlepage}
+\thispagestyle{cover}
+\centering
+\vspace*{0.45cm}
+\coverlogo
+
+\vspace{1.35cm}
+{\color{xjtblue}\rule{0.86\textwidth}{1.1pt}}
+
+\vspace{0.85cm}
+{\Huge\bfseries 2D Finite Element Analysis\\[0.18cm] of a Microstrip Transmission Line\par}
+\vspace{0.45cm}
+
+\vspace{0.85cm}
+{\color{xjtblue}\rule{0.86\textwidth}{0.55pt}}
+
+\vspace{0.9cm}
+{\large\bfseries MTH321 Project 2\par}
+
+\vspace{1.0cm}
+{\large\bfseries Group and student details\par}
+\vspace{0.35cm}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{@{}ll@{}}
+Group name & Group C\\
+Student names and IDs & Chuqiao Tang (2360692)\\
+ & Jinyu Ma (2363433)\\
+ & Muqing Xu (2362900)\\
+ & Shuoran Fu (2362626)\\
+ & Taiqi Zhang (2363684)\\
+ & Yujia Ding (2362094)\\
+Submission version & Final report candidate
+\end{tabular}
+
+\vfill
+{\normalsize October 2026\par}
+\vspace{0.2cm}
+\end{titlepage}
+
+\pagenumbering{roman}
+\begin{abstract}
+This report studies the two-dimensional quasistatic capacitance problem associated with a finite-thickness microstrip transmission line. The conducting trace is removed from the finite-element field domain and imposed as an internal Dirichlet boundary; the ground plane is held at zero potential, and the artificial top and side boundaries use homogeneous Neumann conditions. A conforming triangular $P_1$ finite-element method is verified on a manufactured Poisson problem before being applied to the microstrip geometry. The numerical evidence chain includes baseline matrix and physics checks, a controlled far-boundary truncation study, an energy-norm uniform-refinement study against an over-refined reference, and a deterministic graded-refinement comparison near the conductor corners. A residual-driven adaptive extension was then tested using a flux-jump indicator and D\"orfler marking. At a relative energy error of $0.30$, it reduced the required DOFs and matrix nonzeros relative to uniform refinement, although its cumulative algorithm time was higher. The final dielectric capacitance is selected from a nested uniform M3--M7 sequence. On the frozen M7 mesh, the computed capacitance is $C=120.620\,\mathrm{pF/m}$; the matched all-air solve gives $\Cair=35.9682\,\mathrm{pF/m}$ and $\epseff=3.3535$. The resulting quasistatic characteristic impedance is $\Zzero=50.642\,\Omega$. Hammerstad--Jensen and IPC-2141 engineering approximations give $50.201\,\Omega$ and $49.393\,\Omega$, respectively, agreeing within a few percent. Benchmark agreement is treated as an engineering cross-check, while the primary numerical validation comes from verification, mesh convergence, and matched-mesh consistency tests.
+\end{abstract}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+\section{Introduction}
+A microstrip transmission line consists of a conducting signal trace above a conducting reference plane, separated by a dielectric substrate and surrounded by air. When the electrical length is not negligible compared with the relevant signal wavelengths, the characteristic impedance of the line controls reflection behaviour and therefore signal integrity. Under a lossless quasistatic or quasi-TEM model, this impedance can be inferred from the capacitance per unit length of the cross-section and the corresponding all-air capacitance~\cite{capacitor2d,pozar2011}. The report structure follows the project requirement that numerical claims be supported by verification, convergence evidence, cost information, and reproducible artefacts~\cite{projectbrief,problempack}.
+
+The purpose of this project is not merely to produce one number close to $50\,\Omega$. The scientific question is whether a finite-element calculation of the microstrip capacitance can be trusted. The study therefore follows an evidence chain: first a known-solution solver verification, then physical and algebraic checks on the microstrip solve, domain-truncation control, mesh-convergence evidence in an energy norm, a corner-focused graded-refinement experiment, a residual-driven adaptive refinement extension, final capacitance selection, a matched all-air solve, and finally independent engineering formula comparisons.
+
+The nominal geometry is a copper trace of width $w=3.0\,\mathrm{mm}$ and thickness $t=0.035\,\mathrm{mm}$ on a substrate of height $H=1.6\,\mathrm{mm}$ and relative permittivity $\epsr=4.4$. All computations use SI units internally. The finite computational domain has $x\in[-W,W]$ and $y\in[0,H_{\mathrm{air}}]$; the final engineering domain uses $W/H=H_{\mathrm{air}}/H=8$ after a separate domain study.
+
+\section{Physical and Mathematical Model}
+\subsection{Geometry and material model}
+The substrate occupies $0<y<H$ and has $\epsr=4.4$. The air region is above the substrate and has $\epsr=1$. The signal conductor is centred at $x=0$ and occupies $H\le y\le H+t$ and $-w/2\le x\le w/2$. Its interior is removed from the field domain, so its boundary is an internal Dirichlet boundary rather than a material subregion.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Physical and computational parameters for the final microstrip model.}
+\label{tab:parameters}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Quantity & Value & Meaning\\
+\midrule
+$H$ & $1.6\times 10^{-3}\,\mathrm{m}$ & substrate height\\
+$w$ & $3.0\times 10^{-3}\,\mathrm{m}$ & trace width\\
+$t$ & $3.5\times 10^{-5}\,\mathrm{m}$ & trace thickness\\
+$\epsr$ & $4.4$ & substrate relative permittivity\\
+$V_0$ & $1\,\mathrm{V}$ & trace potential\\
+$W/H$ & $8$ & final half-width ratio\\
+$H_{\mathrm{air}}/H$ & $8$ & final height ratio\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{geometry_full_domain.png}
+\caption{Final geometry convention. The domain half-width is $W$, so the full horizontal span is $2W$. The trace interior is removed from the field domain and the outer top and side boundaries are artificial truncation boundaries.}
+\label{fig:geometry}
+\end{figure}
+
+\subsection{Governing equation and boundary conditions}
+The potential $\phi$ satisfies
+\begin{equation}
+ -\nabla\cdot(\varepsilon \nabla \phi)=0
+ \qquad \text{in }\Omega,
+ \label{eq:pde}
+\end{equation}
+where $\varepsilon=\varepsilon_0\epsr$ is piecewise constant. The essential boundary conditions are
+\[
+\phi=V_0 \quad \text{on the signal trace},\qquad
+\phi=0 \quad \text{on the ground plane}.
+\]
+The artificial top and side boundaries use the homogeneous Neumann condition
+\[
+\varepsilon \nabla \phi\cdot n=0.
+\]
+This same far-boundary convention is used throughout the domain-truncation sequence. Across the air--substrate interface, the exact electrostatic interface conditions are continuity of potential and balance of normal displacement flux.
+
+\section{Finite Element Formulation}
+Let $\Gamma_D$ denote the union of the trace and ground Dirichlet boundaries. The affine trial space is
+\[
+V_g=\{u\in H^1(\Omega):u=V_0 \text{ on the trace},\ u=0 \text{ on the ground}\},
+\]
+and the homogeneous test space is
+\[
+V_0=\{v\in H^1(\Omega):v=0 \text{ on }\Gamma_D\}.
+\]
+Multiplying~\eqref{eq:pde} by $v\in V_0$ and integrating by parts gives
+\[
+\int_{\Omega} \varepsilon \nabla\phi\cdot\nabla v\,d\Omega
+-\int_{\partial\Omega} \varepsilon \nabla\phi\cdot n\,v\,ds=0.
+\]
+The Dirichlet part of the boundary term vanishes because $v=0$ there, and the artificial Neumann term is zero by construction. The weak problem is therefore:
+\[
+\text{find }\phi\in V_g\text{ such that }
+\int_{\Omega}\varepsilon \nabla\phi\cdot\nabla v\,d\Omega=0
+\quad\forall v\in V_0.
+\]
+
+The discrete space uses conforming triangular $P_1$ elements. Writing
+\[
+\phi_h=\sum_j \Phi_j N_j,
+\]
+the stiffness matrix has entries
+\[
+K_{ij}=\int_{\Omega}\varepsilon \nabla N_i\cdot \nabla N_j\,d\Omega.
+\]
+Because $\varepsilon$ is discontinuous at the material interface, the integral is evaluated element by element using each triangle's material tag. In a conforming $H^1$ finite-element space, $\phi_h$ is continuous across the air--substrate interface. Since the discontinuous coefficient is integrated in the same global weak form, the interface flux-balance condition is enforced automatically in the weak or distributional sense. No separate Lagrange multiplier is required. This does not mean that the two elementwise $P_1$ normal-flux traces $\varepsilon\nabla\phi_h\cdot n$ are pointwise identical on every interface edge.
+
+The implementation uses scikit-fem version 12.0.2 for the $P_1$ basis functions, quadrature, and sparse finite-element assembly. The project code explicitly defines the geometry, trace hole, material subdomains, boundary tags, refinement studies, capacitance extraction, and validation logic. The library provides reliable assembly tools, but it does not by itself validate the physical model.
+
+Dirichlet conditions are imposed by eliminating the trace and ground degrees of freedom, leaving a sparse symmetric positive definite free-degree system solved by a sparse direct solver.
+
+The capacitance is extracted in two ways. The energy method is
+\[
+W_e=\frac12\int_{\Omega}\varepsilon |\nabla \phi_h|^2\,d\Omega,\qquad
+C_E=\frac{2W_e}{V_0^2}.
+\]
+The reaction-charge method sums the assembled Dirichlet reactions on the trace:
+\[
+C_Q=\frac{|Q_{\mathrm{trace}}|}{|V_0|}.
+\]
+Agreement between $C_E$ and $C_Q$ verifies the sign convention, Dirichlet dof selection, and quadrature. It is an internal consistency check, not a spatial-convergence proof.
+
+\section{Solver Verification and Baseline Checks}
+\subsection{Manufactured-solution verification}
+Before using the microstrip result, the implementation was verified on a smooth known solution. The test problem uses a unit square with zero Dirichlet data and exact solution
+\[
+u(x,y)=\sin(\pi x)\sin(\pi y).
+\]
+The manufactured forcing and boundary data are explicitly
+\[
+-\Delta u=f,\qquad f(x,y)=2\pi^2\sin(\pi x)\sin(\pi y),\qquad
+u|_{\partial(0,1)^2}=0.
+\]
+Here the named errors are $\|u-u_h\|_{L^2(\Omega)}$ and
+$\|u-u_h\|_E=(\int_\Omega|\nabla(u-u_h)|^2\,d\Omega)^{1/2}$, with coefficient one for this verification problem. The expected smooth $P_1$ rates are two and one, respectively. The five consecutive meshes below contain the required $h,h/2,h/4,h/8$ protocol and one further level $h/16$. Pairwise orders are
+$p_i=\log(E_{i-1}/E_i)/\log(h_{i-1}/h_i)$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{mms_convergence_report.png}
+\caption{Manufactured-solution convergence. The finest-step observed orders are approximately $2.00$ in $L^2$ and $1.00$ in the energy norm, as expected for smooth $P_1$ finite elements.}
+\label{fig:mms}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Consecutive manufactured-solution refinements. $N_T$ is the triangle count and $r_F$ is the free-system algebraic residual. All five levels use a sparse direct solve; an iterative stopping tolerance is not applicable at any level.}
+\label{tab:mms}
+\begingroup
+\setlength{\tabcolsep}{3pt}
+\input{tables/mms_refinement.tex}
+\endgroup
+\end{table}
+
+Least-squares fits of $\log E$ against $\log h_{\max}$ over the finest three levels (4--6) give
+$p_{L^2}=\MMSLTwoFit$ and $p_E=\MMSEnergyFit$. These fitted orders complement the pairwise orders rather than selecting nonconsecutive meshes. The largest listed free residual is below $2.4\times10^{-15}$; the verification residual acceptance check is $\|r_F\|_\infty<10^{-10}$, not an iterative solver tolerance.
+
+\subsection{Baseline microstrip sanity checks}
+The representative baseline solve passed the expected physical and algebraic checks. The potential remained in the interval $[0,1]$, the symmetry error about $x=0$ was near round-off, the reduced matrix symmetry error was zero to numerical precision, and the residual was negligible. The energy and reaction capacitances agreed to within $2.54\times10^{-15}$ relative difference.
+
+\paragraph{Linear solver and algebraic-error control.}
+After Dirichlet elimination, the free system is sparse, symmetric and positive definite, so a sparse direct solve is appropriate for the tested problem sizes. This choice also avoids ambiguity about iterative stopping tolerances. A small residual alone would not prove negligible algebraic error, so the residual is interpreted together with conditioning diagnostics. For the representative baseline solve, the estimated physical reduced-system condition number was $1.7922363\times10^5$, while the diagonal-scaled diagnostic was $1.4249857\times10^4$. The free residual infinity norm was $3.101927\times10^{-25}$. The scaled diagnostic is not the physical condition number, but these conditioning and backward-residual diagnostics indicate that algebraic solve error is far below the observed finite-element discretisation effects.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Representative baseline checks on the $8H$ microstrip domain.}
+\label{tab:baseline}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Diagnostic & Value\\
+\midrule
+Potential range & $[0,1]$\\
+Symmetry relative error & $3.244\times10^{-14}$\\
+Reduced-matrix symmetry error & $0$\\
+Smallest eigenvalue estimate & $5.918\times10^{-15}$\\
+Largest eigenvalue estimate & $1.060677\times10^{-9}$\\
+Condition estimate & $1.7922363\times10^5$\\
+Diagonal-scaled condition diagnostic & $1.4249857\times10^4$\\
+Free residual infinity norm & $3.101927\times10^{-25}$\\
+$C_E$ and $C_Q$ diagnostic difference & $2.536\times10^{-15}$\\
+Charge-balance defect & $6.973\times10^{-15}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{baseline_field_diagnostics.png}
+\caption{Baseline field diagnostics: (a) finite-element potential $\phi_h$, (b) electric-field magnitude $|E_h|$, and (c) elementwise electrostatic energy density, shown with a logarithmic colour scale for visibility. The potential respects the imposed Dirichlet values, while the field and energy density concentrate near the trace corners. These plots are diagnostic visualisations, not error norms.}
+\label{fig:baseline-fields}
+\end{figure}
+
+\section{Domain Truncation}
+The physical air region is unbounded, but the computation uses a finite rectangle. To isolate the truncation effect, the domain study used the sequence $(W/H,H_{\mathrm{air}}/H)=(3,3),(5,5),(8,8),(12,12)$ while preserving the near-trace mesh. The $12H$ result was used only as a tested finite-domain reference, not as the exact infinite-domain solution.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{domain_truncation.png}
+\caption{Domain-truncation study. Differences are relative to the tested $12H$ finite-domain reference. The horizontal line marks the one-percent threshold.}
+\label{fig:domain}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Production domain-truncation results.}
+\label{tab:domain}
+\begin{tabular}{@{}rrrrr@{}}
+\toprule
+$W/H=H_{\mathrm{air}}/H$ & Elements & DOFs & $C_E$ (pF/m) & Difference from $12H$\\
+\midrule
+3 & 11868 & 6121 & 118.839 & $2.491\%$\\
+5 & 16988 & 8711 & 121.004 & $0.714\%$\\
+8 & 26168 & 13346 & 121.653 & $0.182\%$\\
+12 & 41208 & 20926 & 121.875 & reference\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The largest-domain mesh-adequacy check repeated the $12H$ case with a finer near-field resolution. The production value was
+$C_{12,R0}=1.2187452011154754\times10^{-10}\,\mathrm{F/m}$, while the refined repeat gave
+$C_{12,R1}=1.2183061087416544\times10^{-10}\,\mathrm{F/m}$. The resulting mesh sensitivity was $3.604122\times10^{-4}$, or about $0.0360\%$. This is smaller than the $8H$--to--$12H$ production difference of about $0.182\%$, so the selected-domain conclusion is not driven primarily by the production near-field mesh. Neither $12H$ value is treated as the exact infinite-domain capacitance.
+
+The smallest tested domain below one percent was $5H$. The later studies use the $8H$ domain because its tested difference from $12H$ was only about $0.182\%$ while remaining substantially cheaper than the largest domain. This is a finite-domain sensitivity indicator rather than a rigorous infinite-domain error bound.
+
+\section{Mesh Convergence and Corner Singularity}
+\subsection{Corner-field behaviour}
+The conductor corners create singular electric-field behaviour. The lower trace corners are especially delicate because the conductor boundary meets the air--substrate interface. A mesh-dependent peak field that increases under refinement is therefore consistent with singular behaviour; it is not itself an accuracy norm.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{corner_max_field_vs_h.png}
+\caption{Maximum computed electric-field magnitude under uniform refinement. The increasing peak is consistent with stronger resolution of the trace-corner field.}
+\label{fig:corner}
+\end{figure}
+
+\subsection{Uniform energy-norm convergence}
+Uniform convergence was measured against an over-refined nested reference $R2=M6$. The error norm was
+\[
+\|e\|_E^2=\int_{\Omega}\varepsilon |\nabla(\phi_{\mathrm{ref}}-\phi_h)|^2\,d\Omega.
+\]
+The relative energy error used in the figures and tables is
+\begin{equation}
+E_{\mathrm{rel}}^{\mathrm{ref}}=
+\frac{\|\phi_{\mathrm{ref}}-\phi_h\|_E}{\|\phi_{\mathrm{ref}}\|_E},\qquad
+\|\phi_{\mathrm{ref}}\|_E^2=\int_\Omega\varepsilon|\nabla\phi_{\mathrm{ref}}|^2\,d\Omega.
+\label{eq:relative-energy}
+\end{equation}
+When the reference changes, both numerator and denominator use that same reference; this dimensionless ratio is not a relative capacitance difference.
+Coefficient vectors on different meshes were never directly subtracted. Instead, the coarse $P_1$ gradient was evaluated on the reference mesh elements and the error was integrated on the reference grid.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{uniform_energy_convergence.png}
+\caption{Uniform-refinement energy-norm convergence. The fitted slope over M0--M2 is about $0.623$, below the smooth $P_1$ energy slope of one.}
+\label{fig:uniform}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Uniform energy-error convergence against the accepted $R2=M6$ reference.}
+\label{tab:uniform}
+\begin{tabular}{@{}rrrrr@{}}
+\toprule
+Mesh & DOFs & $h_{\max}$ (m) & Relative energy error & $C_E$ (pF/m)\\
+\midrule
+M0 & 35 & $1.415\times10^{-2}$ & 0.6230 & 167.703\\
+M1 & 114 & $7.077\times10^{-3}$ & 0.4030 & 140.432\\
+M2 & 404 & $3.538\times10^{-3}$ & 0.2627 & 129.144\\
+M3 & 1512 & $1.769\times10^{-3}$ & 0.1694 & 124.273\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Reference stability in the M0--M2 fit window. R0=M4, R1=M5 and R2=M6. The last column is $|E_{\rm rel}^{R2}-E_{\rm rel}^{R1}|/|E_{\rm rel}^{R2}|$; each relative error is normalised as in~\eqref{eq:relative-energy}.}
+\label{tab:reference-stability}
+\input{tables/reference_stability.tex}
+\end{table}
+
+The accepted fitted slope is $0.623$ over M0--M2. The R1-to-R2 changes in Table~\ref{tab:reference-stability} range from $0.618\%$ to $2.707\%$; changing the reference changes the fitted slope from $\RefSlopeROne$ to $\RefSlopeRTwo$. Thus the qualitative sublinear-rate conclusion survives reference refinement. This finite sensitivity is disclosed rather than called zero or a rigorous negligible-error bound. M3 is excluded from the fit because its R1-to-R2 error sensitivity is larger ($6.384\%$). The reduced rate is consistent with conductor-corner and material-interface regularity loss.
+
+\section{Graded Versus Uniform Refinement}
+A deterministic graded strategy was tested to concentrate coordinate-line refinement near the four trace corners, with additional emphasis on the lower conductor/material-junction corners. The method remained symmetric about $x=0$ and used the same physical model as the uniform sequence.
+
+\paragraph{Reproducible grading rule.}
+The shared base coordinate sets, in units of $H$, are
+\[
+B_x/H=(-8,-2,-0.9375,0,0.9375,2,8),\qquad
+B_y/H=(0,1,1.021875,1.5,8).
+\]
+Let $D_k(B)$ bisect every interval of $B$ exactly $k$ times (ratio $1/2$). For parameters $(b,u,\ell)$, retain the background coordinates $D_b(B_x)$ and $D_b(B_y)$. Add coordinates from $D_\ell(B_x)$ within $0.45H$ of either $x=\pm w/2$ and from $D_\ell(B_y)$ within $0.45H$ of $y=H$. Add coordinates from $D_u(B_x)$ within $0.30H$ of either $x=\pm w/2$ and from $D_u(B_y)$ within $0.30H$ of $y=H+t$. Take sorted unions, snap to the M6 coordinate set at $10^{-15}\,\mathrm{m}$ precision, form the Cartesian grid, and split each retained rectangle along its bottom-left/top-right diagonal; remove the trace interior. These are axis-aligned bands, not circular element-distance zones: adding a coordinate line also spends resolution away from a corner.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Deterministic G-level parameters read from the experiment CSV. $b$ is the background depth, $u$ the upper-corner depth, and $\ell$ the lower-junction depth. The lower corners receive one extra depth for G0--G3; G4 uses depth five for both, with the larger lower-corner band retained.}
+\label{tab:grading-rule}
+\input{tables/grading_rule.tex}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{uniform_vs_graded_mesh.png}
+\caption{Matched-work visual comparison of uniform and graded meshes. The graded mesh concentrates resolution near the trace corners, whereas the uniform mesh spends resolution throughout the domain.}
+\label{fig:meshcompare}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{graded_cost_metrics.png}
+\caption{Recorded uniform versus graded relative energy-error estimates against (a) DOFs, (b) NNZ and (c) measured median total time. Filled orange squares meet the reference-sensitivity criterion; open squares do not. A subsequent triangle-geometry audit found an additional graded integration limitation, described in the text; the recorded curves are retained rather than silently recomputed.}
+\label{fig:graded-cost}
+\end{figure}
+
+The graded sequence improved local corner resolution. In the recorded estimates, targets $0.40$ and $0.30$ met the reference-sensitivity criterion and gave uniform-to-graded DOF ratios of about $0.798$ and $0.783$, respectively; NNZ and measured timing gave the same qualitative outcome. The $0.20$ target remains exploratory because its interpolation uses a reference-sensitive point. These observations apply to this tested coordinate-line strategy, not all adaptive FEM methods.
+
+\paragraph{Cross-mesh integration audit and remaining limitation.}
+The original graded check verified only that coordinate sets were subsets of R2. That is insufficient for triangular common refinement: when a coarse rectangle has different numbers of subdivisions in $x$ and $y$, its diagonal can cut reference triangles. A geometry-only audit found such crossings for every G-level; for G2, $21440$ of the $180224$ R2 triangles are crossed, covering about $4.55\%$ of the field-domain area. This area fraction is not an energy-error bound. The original single-centroid integration is consequently an approximate cross-mesh quadrature, not exact common-refinement integration. The existing numbers are frozen, but precise graded efficiency claims require common-overlay integration or a proven quadrature-convergence check. A corrected guard now rejects this unsupported shortcut before any new solve. The uniform hierarchy used for Section~6 is genuinely nested and does not have this diagonal-crossing defect. The new, separately stored common-overlay comparison in Section~\ref{sec:residual-adaptive} supplies that validation without replacing the historical curves above.
+
+This negative result motivated a second refinement strategy in which element selection is driven by the computed flux-jump residual rather than by a prescribed geometric grading pattern.
+
+\input{sections/residual_adaptive.tex}
+
+\section{Final Capacitance and Effective Permittivity}
+\subsection{Final dielectric capacitance}
+The final capacitance selection used the nested uniform M3--M7 hierarchy on the fixed $8H$ domain. M8 was preflighted but not recommended because of the expected sparse-direct factorisation cost and fill-in. M7 was accepted through an asymptotic/resource fallback: the capacitance sequence decreased monotonically, the apparent output orders were stable, and the Richardson diagnostic was stable. The final reported capacitance remains the computed M7 FEM value, not the Richardson extrapolate.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{final_capacitance_convergence.png}
+\caption{Final dielectric capacitance selection. M7 is the selected computed FEM mesh; the Richardson line is a diagnostic only.}
+\label{fig:finalcap}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Final dielectric capacitance sequence.}
+\label{tab:finalcap}
+\begin{tabular}{@{}rrrrr@{}}
+\toprule
+Mesh & Elements & DOFs & $C_E$ (pF/m) & Successive change\\
+\midrule
+M3 & 2816 & 1512 & 124.273 & --\\
+M4 & 11264 & 5840 & 122.159 & $1.731\%$\\
+M5 & 45056 & 22944 & 121.225 & $0.770\%$\\
+M6 & 180224 & 90944 & 120.807 & $0.346\%$\\
+M7 & 720896 & 362112 & 120.620 & $0.156\%$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The M7--M6 change, $0.1556\%$, is above the preferred direct $0.1\%$ quality-control target. The reported value is the computed M7 result. Its remaining spatial sensitivity is approximately $0.156\%$, while the tested finite-domain sensitivity is approximately $0.182\%$; neither is a rigorous error bound. They are reported separately rather than combined statistically.
+
+\subsection{Matched all-air solve and effective permittivity}
+The all-air calculation reused the exact frozen M7 mesh. Only the material coefficient was changed to $\epsr=1$ everywhere. This matching is important because $\epseff=C/\Cair$ is a ratio; changing the mesh would mix material and discretisation effects. The mesh fingerprint, degrees of freedom, boundary sets, and matrix sparsity pattern were all checked to match.
+
+\[
+C=120.620\,\mathrm{pF/m},\qquad
+\Cair=35.9682\,\mathrm{pF/m},\qquad
+\epseff=\frac{C}{\Cair}=3.3535.
+\]
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{epsilon_eff_convergence_report.png}
+\caption{Matched M5--M7 effective-permittivity convergence. The M6--M7 relative change is about $0.0595\%$.}
+\label{fig:epsconv}
+\end{figure}
+
+\section{Characteristic Impedance and Engineering Validation}
+\subsection{Final quasi-TEM impedance}
+Using the matched capacitance pair,
+\[
+L=\frac{1}{c_0^2\Cair},\qquad
+\Zzero=\sqrt{\frac{L}{C}}=\frac{1}{c_0\sqrt{C\Cair}},
+\]
+with $c_0=299792458\,\mathrm{m/s}$. The equivalent form
+\[
+\Zzero=\frac{1}{c_0\Cair\sqrt{\epseff}}
+\]
+agrees to floating-point precision; this is an internal identity, not an independent validation.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Final FEM transmission-line quantities.}
+\label{tab:finalengineering}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Quantity & Value\\
+\midrule
+$C$ & $120.620\,\mathrm{pF/m}$\\
+$\Cair$ & $35.9682\,\mathrm{pF/m}$\\
+$\epseff$ & $3.3535$\\
+$L$ & $3.09343\times10^{-7}\,\mathrm{H/m}$\\
+$v_p$ & $1.63708\times10^{8}\,\mathrm{m/s}$\\
+$\Zzero$ & $50.642\,\Omega$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{Z0_convergence_report.png}
+\caption{Direct matched-pair convergence of the final engineering quantity. The M6--M7 relative change in $\Zzero$ is about $0.126\%$.}
+\label{fig:zconv}
+\end{figure}
+
+\subsection{Independent engineering benchmarks}
+The final transmission-line table reports computed M7 outputs, with the $0.156\%$ spatial and $0.182\%$ finite-domain sensitivity caveats stated above; the printed digits do not establish an exact limiting value.
+
+The Hammerstad--Jensen and IPC-2141 calculations use only geometry and $\epsr$, not FEM capacitance or FEM $\epseff$. They are independent approximate engineering formulas, not exact solutions. The Hammerstad--Jensen implementation uses the finite strip-thickness correction from the project specification~\cite{hammerstad1980,capacitor2d}; IPC-2141 uses the compact external-microstrip expression with a natural logarithm~\cite{ipc2141,capacitor2d}.
+
+Following Appendix E of the specification, the named discrepancy uses Hammerstad--Jensen in the denominator:
+\[
+d_{\mathrm{HJ}}(Z)=\frac{|Z-Z_{0,\mathrm{HJ}}|}{|Z_{0,\mathrm{HJ}}|}.
+\]
+The primary comparisons are therefore $100d_{\rm HJ}(Z_{0,\rm FEM})=0.879\%$ and $100d_{\rm HJ}(Z_{0,\rm IPC})=1.608\%$. The optional FEM-denominator differences are retained in a separately labelled column so that the two definitions cannot be confused.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{Z0_benchmark_comparison_report.png}
+\caption{Final FEM characteristic impedance compared with independent engineering approximations.}
+\label{fig:bench}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Engineering benchmark comparison. The primary $d_{\rm HJ}$ column uses the specification's Hammerstad--Jensen denominator. The last column is the supplementary $|Z-Z_{0,\rm FEM}|/|Z_{0,\rm FEM}|$ percentage, not $d_{\rm HJ}$.}
+\label{tab:bench}
+\input{tables/benchmark_specification.tex}
+\end{table}
+
+The Hammerstad--Jensen formula agrees more closely with the FEM result than the simpler IPC-2141 expression. This is useful engineering validation of the scale of the result, but the benchmark agreement does not prove FEM correctness. The numerical verification and convergence evidence above remain the primary validation.
+
+The final FEM value is also close to the common $50\,\Omega$ design target:
+\[
+\Zzero-50\,\Omega = 0.642\,\Omega,
+\]
+or about $1.284\%$ above $50\,\Omega$. The target is design context only, not a numerical reference solution.
+
+\section{Limitations}
+The physical model is electrostatic and quasistatic/quasi-TEM. It does not include dielectric dispersion, dielectric loss, conductor loss, surface roughness, solder-mask loading, radiation, anisotropy, or manufacturing tolerances. The trace and ground are perfect conductors.
+
+The numerical result also has limitations. The $8H$ domain is justified by a finite $12H$ comparison, not by an exact infinite-domain solution. The final M7 mesh was accepted through a resource-aware asymptotic fallback rather than by directly reaching the preferred $0.1\%$ capacitance-change target. Richardson extrapolation is diagnostic only. The historical graded curves use approximate cross-mesh quadrature; only the separately recomputed exact-overlay extension is used for current quantitative efficiency claims. The adaptive comparison uses one residual indicator, one primary D\"orfler parameter ($\theta=0.5$), one symmetry/conformity closure and two declared starting meshes. It does not establish optimality among estimators or marking strategies; the indicator-to-error ratio has not stabilised.
+
+\section{Conclusions}
+This project produced a validated finite-element calculation of the quasistatic microstrip impedance. The final dielectric capacitance is
+\[
+C=120.620\,\mathrm{pF/m},
+\]
+and the matched all-air capacitance is
+\[
+\Cair=35.9682\,\mathrm{pF/m}.
+\]
+Their ratio gives $\epseff=3.3535$, and the final quasi-TEM characteristic impedance is
+\[
+\boxed{\Zzero=50.642\,\Omega.}
+\]
+
+The numerical-analysis evidence is as important as the final number. The solver passed known-solution verification with the expected $P_1$ rates. The domain study supported the $8H$ final domain, and the uniform energy-norm fit gave about $0.623$, consistent with conductor-corner and interface regularity loss. The historical graded estimates favoured uniform refinement; the separately stored exact-overlay comparison preserves that conclusion at the formal targets. The final capacitance was selected from the uniform M3--M7 sequence, then reused exactly in a matched all-air solve. Engineering approximations gave $50.201\,\Omega$ by Hammerstad--Jensen and $49.393\,\Omega$ by IPC-2141, providing independent approximate cross-checks.
+
+Under the tested matched-work conditions, residual-driven refinement reduced the DOFs and NNZ needed for a $0.30$ relative energy error, but its cumulative algorithm time exceeded uniform refinement; improved localisation did not imply a universal runtime advantage. This extension did not replace the final computed M7 capacitance or any matched-air/impedance result.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\appendix
+\section{AI Transparency Audit}
+AI/Codex assistance was used for code scaffolding, plotting routines, numerical workflow generation, documentation organisation, consistency checks, and this first report draft. The numerical results were not accepted directly from AI output. They were checked through manufactured-solution convergence, residual and matrix diagnostics, charge-balance checks, domain truncation, reference-refinement stability, matched all-air mesh identity, independent engineering formulas, and automated tests.
+
+The audit also follows the five-gate process required for AI-assisted solver work. First, formula and equation transcription was checked against the project source documents. Second, structure and indexing risks were tested through geometry, material-region, boundary-node, and dof checks. Third, the mathematical formulation was checked by deriving the weak form, Dirichlet elimination, capacitance identities, and quasi-TEM identities explicitly. Fourth, independent reproduction was addressed by the manufactured-solution test, mesh-refinement studies, matched air-only replay, and engineering benchmark formulas. Fifth, suspicious or fragile results were interrogated through the dedicated domain, reference-stability, graded-refinement, final-capacitance, and matched-mesh studies rather than accepted at face value.
+
+\begin{longtable}{@{}L{0.22\textwidth}L{0.32\textwidth}L{0.36\textwidth}@{}}
+\caption{Project-specific AI audit summary.}\label{tab:aiaudit}\\
+\toprule
+Component & Main risk & Verification evidence\\
+\midrule
+\endfirsthead
+\toprule
+Component & Main risk & Verification evidence\\
+\midrule
+\endhead
+P1 FEM solver and Dirichlet elimination & Incorrect assembly, boundary treatment, or material coefficient handling & Manufactured-solution convergence; matrix symmetry and residual checks; material-tag tests\\
+Microstrip geometry & Trace hole, interface, or boundary nodes misidentified & Geometry tests; full and near-trace figures; potential bounds and symmetry\\
+Capacitance extraction & Reaction sign or trace-dof summation error & $C_E/C_Q$ agreement and charge-balance diagnostics\\
+Domain study & Changing the far domain could also change the near-trace mesh & Automated near-field equivalence checks and domain-truncation tables\\
+Uniform convergence & Invalid coefficient-vector subtraction across meshes & Reference-mesh gradient transfer and reference-stability table\\
+Graded refinement & Confusing coordinate nesting with triangular common refinement & Geometry audit detects crossed diagonals; original efficiency estimates retained with an explicit integration caveat\\
+Final capacitance & Selecting a convenient mesh rather than an evidenced one & M3--M7 monotonic sequence, M8 preflight, Richardson diagnostic, frozen mesh artifact\\
+Matched all-air solve & Regenerating a nominally similar mesh and contaminating $C/\Cair$ & Frozen mesh SHA-256, same dofs, same boundary sets, same sparse pattern, dielectric replay\\
+Engineering benchmarks & Circular validation using FEM outputs inside formulas & Benchmark function signatures accept only geometry and $\epsr$; unit-invariance tests\\
+\bottomrule
+\end{longtable}
+
+\paragraph{Case audit 1: energy--charge agreement.}
+\textit{Claim examined:} near-equality of $C_E$ and $C_Q$ proves spatial convergence.
+\textit{Risk and falsifier:} reactions and energy come from the same stiffness matrix, so even a coarse mesh can satisfy $2W_e=V_0Q$.
+\textit{Independent evidence:} M0 has $\delta_{EQ}\approx4.62\times10^{-16}$ but $C_E\approx167.703\,\mathrm{pF/m}$, whereas the computed M7 result is $120.620\,\mathrm{pF/m}$.
+\textit{Decision:} reject that inference; use $\delta_{EQ}$ for algebraic consistency and the separate mesh sequence for spatial sensitivity.
+\textit{Remaining limitation:} the mesh sequence still has the disclosed M7 fallback sensitivity.
+
+\paragraph{Case audit 2: a finite far-boundary reference.}
+\textit{Claim examined:} the tested $12H$ solution is the exact infinite-domain answer.
+\textit{Risk and falsifier:} a finite Neumann boundary still changes the field; one large box alone cannot remove truncation.
+\textit{Independent evidence:} the fixed-core 3H--12H sequence and the finer 12H repeat separate measured domain and mesh effects.
+\textit{Decision:} call 12H a tested finite-domain reference and report the $0.182\%$ 8H difference separately.
+\textit{Remaining limitation:} no exact infinite-domain error bound is available. This is an audited inference, not a claim that such an exact-reference error was previously committed.
+
+\newpage
+\paragraph{Case audit 3: errors across different meshes.}
+\textit{Claim examined:} coefficient vectors or nested coordinate lists alone define a valid cross-mesh energy error.
+\textit{Risk and falsifier:} vector entries live in different bases, and a fine triangle crossing a coarse gradient jump invalidates constant-gradient element integration.
+\textit{Independent evidence:} uniform triangle-containment checks pass, while the new vertex-side test finds crossings in all five graded cases despite coordinate-subset tests passing.
+\textit{Decision at the rubric review:} retain the uniform norm calculation, correct the graded guard, and withdraw precise graded efficiency claims until overlay integration is validated.
+\textit{Extension verification:} Section~\ref{sec:residual-adaptive} subsequently supplies separately stored exact-overlay errors for all three methods. Opposite-diagonal analytic integration, the nested Galerkin identity, material matching and area-coverage tests support that implementation. Historical curves were not overwritten.
+\textit{Remaining limitation:} fine graded points remain reference-sensitive, and the legacy full-run entry point still needs a new integrated certification; the standalone extension is not presented as that certification.
+
+\paragraph{Case audit 4: symmetry and mesh-quality assumptions.}
+\textit{Claim examined:} symmetric node coordinates alone ensure a symmetric continuous $P_1$ field after local refinement.
+\textit{Falsifier and evidence:} historical parallel diagonals gave an approximately $2.05\%$ continuous reflection discrepancy on M2 despite near-roundoff nodal symmetry. A first diagonal-only completion then failed coarse-companion potential bounds.
+\textit{Decision:} retain the failed attempt, use a nonobtuse mirror completion of the same parent family, and test continuous reflection, bounds, conformity and material tags independently. Corrected paths pass; this is a validation-driven correction, not tuning $\theta$ to win.
+
+\paragraph{Case audit 5: estimator interpretation.}
+\textit{Claim examined:} a residual indicator is automatically a calibrated true-error estimate.
+\textit{Falsifier and evidence:} the primary reference error decreases, while the final indicator rises and the scaled indicator/error ratio changes from about $5.61$ to $10.0$.
+\textit{Decision:} use $\eta$ for marking only; report its dimensional and scaled diagnostics without a guaranteed-bound or stable-effectivity claim. Efficiency claims use independently integrated reference errors, not $\eta$.
+
+\section{Individual Contribution Statements}
+Group C's six-member team has instructor approval, as confirmed by the team. The member identities below are supplied by the team; each member will complete their own contribution statement before submission.
+
+\begin{description}[style=nextline,leftmargin=1.8cm,labelwidth=1.6cm]
+\item[Member 1:] \textbf{Chuqiao Tang (2360692)}. \todo{TO BE COMPLETED BY TEAM.}
+\item[Member 2:] \textbf{Jinyu Ma (2363433)}. \todo{TO BE COMPLETED BY TEAM.}
+\item[Member 3:] \textbf{Muqing Xu (2362900)}. \todo{TO BE COMPLETED BY TEAM.}
+\item[Member 4:] \textbf{Shuoran Fu (2362626)}. \todo{TO BE COMPLETED BY TEAM.}
+\item[Member 5:] \textbf{Taiqi Zhang (2363684)}. \todo{TO BE COMPLETED BY TEAM.}
+\item[Member 6:] \textbf{Yujia Ding (2362094)}. \todo{TO BE COMPLETED BY TEAM.}
+\end{description}
+
+\end{document}
