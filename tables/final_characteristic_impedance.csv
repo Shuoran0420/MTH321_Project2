@@ -1,2 +1,0 @@
-FINAL_MESH_ID,C_dielectric,C_air,epsilon_eff,c0,L_H_per_m,Z0_air_ohm,Z0_FEM_ohm,Z0_from_epsilon_ohm,Z0_from_LC_ohm,phase_velocity_m_per_s,phase_velocity_over_c0,internal_Z0_consistency_error,internal_velocity_consistency_error,Gate_H_status
-uniform_M7_8H_neumann_P1_v1,1.206197736939107e-10,3.596821087666098e-11,3.353510523710212,299792458.0,3.093426192003322e-07,92.73858417422558,50.64197383662741,50.641973836627415,50.641973836627415,163708363.13321367,0.5460723202490093,1.403070776925744e-16,0.0,PASS
