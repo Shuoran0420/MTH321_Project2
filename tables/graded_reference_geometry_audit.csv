@@ -1,0 +1,6 @@
+graded_level,reference,reference_elements,coordinate_subset,crossed_triangles,crossed_area_fraction,valid
+G0,R2=M6,180224,True,4736,0.010125066778600315,False
+G1,R2=M6,180224,True,9216,0.02049936083339692,False
+G2,R2=M6,180224,True,21440,0.04554332738685794,False
+G3,R2=M6,180224,True,42440,0.08934204297202926,False
+G4,R2=M6,180224,True,36392,0.07612989689861095,False
