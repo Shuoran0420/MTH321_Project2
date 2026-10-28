@@ -1,0 +1,171 @@
+{
+  "adaptive_fits": [
+    {
+      "window": "A0-A7",
+      "reference": "M6",
+      "signed_DOF_slope": -0.3620270615575138,
+      "decay_exponent": 0.3620270615575138,
+      "R_squared": 0.922334797530718,
+      "ideal_decay_exponent": 0.5
+    },
+    {
+      "window": "A0-A7",
+      "reference": "M7",
+      "signed_DOF_slope": -0.3696202822736325,
+      "decay_exponent": 0.3696202822736325,
+      "R_squared": 0.9341008372944158,
+      "ideal_decay_exponent": 0.5
+    },
+    {
+      "window": "A3-A7",
+      "reference": "M6",
+      "signed_DOF_slope": -0.24701602862325614,
+      "decay_exponent": 0.24701602862325614,
+      "R_squared": 0.9989446159093099,
+      "ideal_decay_exponent": 0.5
+    },
+    {
+      "window": "A3-A7",
+      "reference": "M7",
+      "signed_DOF_slope": -0.26568448985265103,
+      "decay_exponent": 0.26568448985265103,
+      "R_squared": 0.9985491773320425,
+      "ideal_decay_exponent": 0.5
+    }
+  ],
+  "uniform_fit_windows": [
+    {
+      "window": "M0-M1",
+      "reference": "R0",
+      "points": 2,
+      "slope": 0.6587874134217773,
+      "R_squared": 1.0,
+      "note": "sensitivity analysis; original fit window unchanged"
+    },
+    {
+      "window": "M0-M1",
+      "reference": "R1",
+      "points": 2,
+      "slope": 0.6374781762558746,
+      "R_squared": 1.0,
+      "note": "sensitivity analysis; original fit window unchanged"
+    },
+    {
+      "window": "M0-M1",
+      "reference": "R2",
+      "points": 2,
+      "slope": 0.6284082712466793,
+      "R_squared": 1.0,
+      "note": "sensitivity analysis; original fit window unchanged"
+    },
+    {
+      "window": "M0-M2",
+      "reference": "R0",
+      "points": 3,
+      "slope": 0.6762385387819085,
+      "R_squared": 0.9997780631640967,
+      "note": "sensitivity analysis; original fit window unchanged"
+    },
+    {
+      "window": "M0-M2",
+      "reference": "R1",
+      "points": 3,
+      "slope": 0.6383074874707942,
+      "R_squared": 0.999999437330078,
+      "note": "sensitivity analysis; original fit window unchanged"
+    },
+    {
+      "window": "M0-M2",
+      "reference": "R2",
+      "points": 3,
+      "slope": 0.6229871352252817,
+      "R_squared": 0.999974759948596,
+      "note": "sensitivity analysis; original fit window unchanged"
+    },
+    {
+      "window": "M1-M2",
+      "reference": "R0",
+      "points": 2,
+      "slope": 0.6936896641420397,
+      "R_squared": 1.0,
+      "note": "sensitivity analysis; original fit window unchanged"
+    },
+    {
+      "window": "M1-M2",
+      "reference": "R1",
+      "points": 2,
+      "slope": 0.6391367986857134,
+      "R_squared": 1.0,
+      "note": "sensitivity analysis; original fit window unchanged"
+    },
+    {
+      "window": "M1-M2",
+      "reference": "R2",
+      "points": 2,
+      "slope": 0.6175659992038834,
+      "R_squared": 1.0,
+      "note": "sensitivity analysis; original fit window unchanged"
+    },
+    {
+      "window": "M0-M3",
+      "reference": "R0",
+      "points": 4,
+      "slope": 0.7337060617589133,
+      "R_squared": 0.9958519784188501,
+      "note": "sensitivity analysis; original fit window unchanged"
+    },
+    {
+      "window": "M0-M3",
+      "reference": "R1",
+      "points": 4,
+      "slope": 0.6534963818131708,
+      "R_squared": 0.999639772323536,
+      "note": "sensitivity analysis; original fit window unchanged"
+    },
+    {
+      "window": "M0-M3",
+      "reference": "R2",
+      "points": 4,
+      "slope": 0.6254728973869983,
+      "R_squared": 0.9999794546604714,
+      "note": "sensitivity analysis; original fit window unchanged"
+    }
+  ],
+  "final_computed_C": "1.206197736939107e-10",
+  "domain_8H_production_C": "1.2165267027057405e-10",
+  "domain_12H_production_C": "1.2187452011154754e-10",
+  "domain_indicator": "0.0018203135550436402",
+  "domain_scope": "matched-core production domain sequence, not a bound for final M7",
+  "richardson_diagnostics": [
+    {
+      "triple": "M3-M4-M5",
+      "p_C": "1.1792909584472908",
+      "finest_mesh": "M5",
+      "C_finest": "1.2122529164903375e-10",
+      "C_extrapolated": "1.204870105315334e-10",
+      "relative_finest_to_extrapolated": "0.0061274747729518795",
+      "relative_change_from_previous_Cext": "nan"
+    },
+    {
+      "triple": "M4-M5-M6",
+      "p_C": "1.1597931270089354",
+      "finest_mesh": "M6",
+      "C_finest": "1.2080740246554666e-10",
+      "C_extrapolated": "1.2046882610644807e-10",
+      "relative_finest_to_extrapolated": "0.0028104894024568983",
+      "relative_change_from_previous_Cext": "0.00015094714270112635"
+    },
+    {
+      "triple": "M5-M6-M7",
+      "p_C": "1.1552393442800506",
+      "finest_mesh": "M7",
+      "C_finest": "1.206197736939107e-10",
+      "C_extrapolated": "1.2046688351334256e-10",
+      "relative_finest_to_extrapolated": "0.0012691469730866964",
+      "relative_change_from_previous_Cext": "1.612553632044068e-05"
+    }
+  ],
+  "spatial_indicator": "0.0015555390786264234",
+  "ideal_adaptive_efficiency_demonstrated": false,
+  "python": "3.13.13"
+}

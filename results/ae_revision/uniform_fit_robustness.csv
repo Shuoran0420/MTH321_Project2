@@ -1,0 +1,13 @@
+window,reference,points,slope,R_squared,note
+M0-M1,R0,2,0.6587874134217773,1.0,sensitivity analysis; original fit window unchanged
+M0-M1,R1,2,0.6374781762558746,1.0,sensitivity analysis; original fit window unchanged
+M0-M1,R2,2,0.6284082712466793,1.0,sensitivity analysis; original fit window unchanged
+M0-M2,R0,3,0.6762385387819085,0.9997780631640967,sensitivity analysis; original fit window unchanged
+M0-M2,R1,3,0.6383074874707942,0.999999437330078,sensitivity analysis; original fit window unchanged
+M0-M2,R2,3,0.6229871352252817,0.999974759948596,sensitivity analysis; original fit window unchanged
+M1-M2,R0,2,0.6936896641420397,1.0,sensitivity analysis; original fit window unchanged
+M1-M2,R1,2,0.6391367986857134,1.0,sensitivity analysis; original fit window unchanged
+M1-M2,R2,2,0.6175659992038834,1.0,sensitivity analysis; original fit window unchanged
+M0-M3,R0,4,0.7337060617589133,0.9958519784188501,sensitivity analysis; original fit window unchanged
+M0-M3,R1,4,0.6534963818131708,0.999639772323536,sensitivity analysis; original fit window unchanged
+M0-M3,R2,4,0.6254728973869983,0.9999794546604714,sensitivity analysis; original fit window unchanged

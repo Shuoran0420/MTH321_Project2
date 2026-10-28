@@ -1,0 +1,4 @@
+theta,cycles,initial_DOFs,final_DOFs,final_error_M6,reference_sensitivity,median_cumulative_time_s,all_sanity_checks,scope
+0.3,8,404,1154,0.16050794415442074,0.0044587618327216316,0.14533691894030198,PASS,same M1-S start; not matched-work merely because cycle counts match
+0.5,8,404,2088,0.13539640463868988,0.004115143385903109,0.2377263339003548,PASS,same M1-S start; not matched-work merely because cycle counts match
+0.7,8,404,4507,0.10546591215519537,0.01749978234204669,0.40897124900948256,PASS,same M1-S start; not matched-work merely because cycle counts match
