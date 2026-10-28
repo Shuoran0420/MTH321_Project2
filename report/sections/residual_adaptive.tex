@@ -1,0 +1,150 @@
+\section{Residual-Based Adaptive Refinement}
+\label{sec:residual-adaptive}
+\subsection{Motivation and controlled setup}
+The measured uniform energy rate, $p_E\simeq0.623$, suggests that extra resolution near the strong corner fields may be useful. Rather than prescribing where to refine, we used the computed flux imbalance to select elements. We compared all three methods with the triangle-overlay calculation introduced above. The hypothesis was recorded before the experiments in \path{logs/PRE_ADAPTIVE_HYPOTHESIS.md}. The $8H$ domain, trace hole, material coefficient, homogeneous-Neumann far boundary, $P_1$ formulation and sparse direct solver were held fixed. No new all-air problem was solved, and the final M7 engineering values were retained.
+
+The historical M2 coordinates are left--right symmetric, but its identically oriented cell diagonals are not. To avoid confusing mesh-orientation asymmetry with adaptivity, the primary initial mesh uses a conforming, mirror-invariant subdivision of M1. All edge midpoints are inserted; each right triangle is divided into four nonobtuse triangles, giving exactly the M2 coordinates, $704$ elements and $404$ DOFs. We call this \emph{M1-S (M2-resolution)}, not the unchanged M2 triangulation. An eight-cycle M0-S companion path brackets the $0.40$ and $0.30$ error targets, since the primary initial error is already below $0.30$.
+
+An earlier diagonal-only symmetry completion was rejected: its very coarse M0 companion produced minimum potentials down to about $-0.030$ V. All its points and timings remain in a separate failed-attempt directory and are excluded from the conclusions. The correction was made to satisfy potential bounds, not to optimise efficiency; the indicator and marking parameter were unchanged.
+
+\subsection{Flux-jump indicator and marking}
+A posteriori indicators use the computed solution to guide local refinement. The general background is given by Hackbusch~\cite[Sec.~8.7]{hackbusch2017} and Quarteroni~\cite[Sec.~4.6]{quarteroni2017}. These texts motivate the approach; the particular indicator, marking parameter and refinement closure tested here are stated below. We do not infer a guaranteed error bound or an optimal convergence rate from those references.
+
+For $f=0$, constant elementwise $\epsilon$ and affine $\phi_h|_K$, the interior volume residual vanishes. For an interior edge, choose one unit normal $n_e$ and define
+\[
+J_e=(\epsilon\nabla\phi_h|_{K^+}-\epsilon\nabla\phi_h|_{K^-})\cdot n_e.
+\]
+The same normal is used on both sides, including material-interface edges. With $h_e$ equal to edge length, the implemented indicator is
+\begin{equation}
+\eta_K^2=\frac12\sum_{e\subset\partial K\cap\mathcal E_{\rm int}}
+h_e\|J_e\|_{L^2(e)}^2+
+\sum_{e\subset\partial K\cap\Gamma_{\rm far}}
+h_e\|\epsilon\nabla\phi_h\cdot n\|_{L^2(e)}^2,
+\qquad \eta=\left(\sum_K\eta_K^2\right)^{1/2}.
+\end{equation}
+Since these traces are constant, each term is evaluated exactly as $h_e^2J_e^2$ (or its boundary counterpart). Trace and ground Dirichlet edges contribute no natural-boundary residual. This is a \emph{residual-based refinement indicator}, not a guaranteed error bound.
+
+At every step, deterministic D\"orfler marking chooses the smallest descending-indicator prefix containing at least $\theta=0.5$ of $\sum_K\eta_K^2$. The reflected triangles are added for symmetry. All edges of marked triangles are split; any triangle with two split edges has its third edge split as well. This conformity closure gives unambiguous red/four-child and green/two-child subdivisions. Minimal marks, symmetry-added marks and all actually refined parents are recorded separately. No corner-distance rule selects elements.
+
+\medskip
+\begin{algorithm}[H]
+\caption{Residual-based adaptive refinement}\label{alg:adaptive}
+\begin{algorithmic}[1]
+\Require Symmetry-completed initial mesh; $\theta=0.5$; eight cycles; M6/M7 references
+\For{cycle $k=0,\ldots,7$}
+\State Solve the fixed dielectric problem using Algorithm~\ref{alg:fem}.
+\State Form $\varepsilon_K\nabla\phi_h$ and consistent-normal interior flux jumps.
+\State Accumulate $\eta_K^2$, including far-Neumann edges and excluding Dirichlet edges.
+\State Integrate errors on M6/M7 triangle overlaps; compute $S_{\rm ref}$ and $C_E$.
+\State Record diagnostics, DOFs, NNZ and median timings after one warm-up and five runs.
+\State Sort $\eta_K^2$ in descending order, breaking ties by element index.
+\State Select the smallest prefix $\mathcal M$ with $\sum_{K\in\mathcal M}\eta_K^2\ge\theta\sum_K\eta_K^2$.
+\State Add reflected marks and close split edges for a conforming red/green subdivision.
+\State Record minimal marks, symmetry additions and actually refined parents.
+\State Verify hole, interface tags and conformity; use the refined mesh for the next cycle.
+\EndFor
+\State Compare methods at bracketed targets; permit formal claims only if $S_{\rm ref}<0.03$ at every bracket endpoint.
+\end{algorithmic}
+\end{algorithm}
+\medskip
+Algorithm~\ref{alg:adaptive} uses the indicator to choose elements and the independently integrated reference error to judge accuracy. Outgoing refinement is charged to the next cycle's cumulative timing; offline reference solves and overlay-error evaluation are excluded from every method's work metric. The primary M1-S and companion M0-S trajectories are run separately, not combined into a favourable envelope. The implementation is in \path{code/residual_indicator.py}, \path{code/adaptive_mesh.py} and \path{code/residual_adaptive_study.py}.
+
+\subsection{Reference error and adaptive mesh behaviour}
+The principal and sensitivity references are M6 and the frozen M7 dielectric solution. For $R\in\{M6,M7\}$,
+\[
+\|e_R\|_E=\left(\int_\Omega\epsilon|\nabla(\phi_R-\phi_h)|^2\,d\Omega\right)^{1/2},\quad
+E_{{\rm rel},R}=\frac{\|e_R\|_E}{\|\phi_R\|_E},\quad
+S_{\rm ref}=\frac{|\|e_{M7}\|_E-\|e_{M6}\|_E|}{\|e_{M7}\|_E}.
+\]
+All three methods are compared using $E_{{\rm rel},M6}$ and the same exact triangle-overlay integration. Contained reference triangles use constant gradients directly; crossed triangles are intersected geometrically and integrated by overlap area. Here ``exact'' refers to integration of constant gradients over the geometric overlaps, subject to floating-point geometry tolerances, not to an exact PDE solution. Coefficient vectors on different meshes are never subtracted. This resolves the integration issue in Section~\ref{sec:historical-graded} for the new comparison, while retaining its historical Figure~\ref{fig:graded-cost} and raw tables. The maximum relative overlay area-coverage defect was below $2\times10^{-12}$. Formal comparisons require $S_{\rm ref}<3\%$; other points remain visible with open markers.
+
+\begin{table}[H]
+\centering\small
+\caption{Primary residual-adaptive sequence. Every point meets the predeclared reference-sensitivity criterion. Full-precision capacitances, marks, sanity checks and timing samples are retained in the extension CSVs.}
+\input{tables/adaptive_sequence.tex}
+\label{tab:adaptive-sequence}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=0.76\textheight,keepaspectratio]{../figures/adaptive_extension/F_ADAPTIVE_MESH_EVOLUTION.pdf}
+\caption{Residual-adaptive meshes A0, A3 and A7 in the same physical near-trace window; colours show $\eta_K^2$ on a shared logarithmic scale. Refinement increasingly concentrates around the trace ends, while some marked regions lie farther into the substrate and air. This is observed localisation, not a claim that the indicator exactly identifies every singular contribution.}
+\label{fig:adaptive-mesh}
+\end{figure}
+
+Within $0.25H$ of a trace corner, the element fraction rises from $5.11\%$ at A0 to $62.0\%$ at A7; these elements contain $79.6\%$ of the final squared indicator. Initially $88.6\%$ of the indicator is assigned to elements whose nearest corner is a lower junction; at A7 this fraction is $50.2\%$. Thus lower-junction concentration is strongest early, not uniformly dominant throughout. The far-boundary contribution is about $0.00265\%$ of the final indicator. Some final marked element centroids reach $|x|=5.0$ mm and $y=4.57$ mm, so refinement is not confined to four prescribed disks.
+
+\subsection{Matched-work comparison}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=0.85\textheight,keepaspectratio]{../figures/adaptive_extension/F_ADAPTIVE_WORK_PRECISION.pdf}
+\caption{New three-way comparison in a common norm: (a) DOFs, (b) reduced NNZ, (c) measured median total algorithm time. Solid green triangles are the primary M1-S path; dashed green triangles are its separately identified M0-S companion. Open markers fail the M6/M7 reference-sensitivity threshold. Historical uniform/graded raw errors and timing tables were not overwritten.}
+\label{fig:adaptive-work}
+\end{figure}
+
+One warm-up and five measured repetitions are used for every point. Uniform and graded work includes mesh generation, assembly, solve and capacitance extraction. Adaptive work is cumulative from its initial mesh, including all preceding solves, estimators, marking and refinement, up to the current solution. This accounting deliberately charges adaptive refinement for the preceding solve--estimate--mark--refine cycles because those computations are required to obtain the final adaptive mesh; the comparison is therefore conservative with respect to adaptivity. DOF and NNZ comparisons remain independent of this timing convention. Offline reference solves and error integration are excluded equally. This prevents comparing an entire adaptive trajectory with only a final sparse solve. Millisecond-scale differences on the coarsest meshes are not interpreted as convincing speedups.
+
+\begin{table}[H]
+\centering\small
+\caption{Piecewise log-linear interpolation between measured consecutive points only. $U,G,A$ denote uniform, prescribed grading and residual adaptivity. Ratios above one favour adaptivity. The $0.40/0.30$ adaptive targets use the M0-S companion. $^*$The $0.20$ three-way comparison is exploratory because the graded bracket includes reference-sensitive G3.}
+\input{tables/adaptive_targets.tex}
+\label{tab:adaptive-targets}
+\end{table}
+
+At $E_{\rm rel}=0.30$, adaptivity needs about $224$ DOFs versus $273$ for uniform and $349$ for grading, with uniform/adaptive DOF and NNZ ratios $1.218$ and $1.235$. However, its cumulative median time is $13.1$ ms versus $7.15$ ms for uniform: the time ratio is $0.546$, not a speedup. At $0.40$, the DOF ratio is only $1.013$ and the measured times are too small to establish a robust runtime advantage. In a direct reference-stable comparison, A5 uses $1206$ DOFs with error $0.1553$, while M3 uses $1512$ DOFs with error $0.1694$; A5 nevertheless takes about $2.91$ times the cumulative algorithm time.
+
+\paragraph{Measured interpolation brackets.}
+The DOFs in Table~\ref{tab:adaptive-targets} are interpolated work estimates, not newly solved meshes. Table~\ref{tab:measured-brackets} lists the actual consecutive meshes used in every interpolation. Targets $0.40$ and $0.30$ use the M0-S companion (B levels), whereas $0.20$ uses the M1-S primary path (A levels) and remains exploratory because the graded bracket is reference-sensitive. The same log-linear weight is applied to each work metric; no extrapolation is used.
+\begin{table}[H]\centering\footnotesize
+\caption{Actual measured endpoints behind the target estimates. Sensitivity is the maximum over the two endpoints; the full CSV also records NNZ and interpolation weights.}
+\input{tables/ae_target_brackets.tex}\label{tab:measured-brackets}
+\end{table}
+\begin{table}[H]\centering\small
+\caption{Median and interquartile range of selected original timing samples. Every level uses one warm-up and five measured repetitions. Adaptive totals are cumulative; fixed-mesh totals are one-shot. IQR describes repeat variability, not a confidence interval.}
+\input{tables/ae_timing.tex}\label{tab:timing-iqr}
+\end{table}
+The original sample files do not establish a complete hardware record. Their timings remain tied to that recorded run; the integrated reproduction records its own platform and memory preflight and produces new samples in a separate directory. Repeated measurements reduce single-run noise, but do not make millisecond-scale differences portable across machines. Nor does cumulative adaptive time isolate the speed of one sparse solve.
+
+\subsection{Interpretation and capacitance}
+We expected adaptive refinement to reduce the number of unknowns by refining the regions that needed more resolution. At $0.30$, the results supported this expectation in terms of DOFs and matrix size. However, the repeated solving, indicator evaluation and refinement steps increased the total computation time. A7 has $1522$ elements outside the specified corner neighbourhoods, versus $2047$ for G2 at a comparable scale. This supports the explanation that coordinate-line grading spends more resolution away from corners; it does not isolate the causal effects of band width, lower-corner weighting or transitions, which were not varied independently.
+
+The capacitance diagnostic uses $|C_h-C_{M7}|/|C_{M7}|$, where computed M7 is a selected numerical reference, not exact capacitance. A5 differs by $2.42\%$, versus $3.03\%$ for M3, so the energy improvement also has a capacitance benefit in this matched-work pair. A7 still differs by $1.74\%$ and is not substituted for the accepted M7 engineering mesh.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{../figures/adaptive_extension/F_ADAPTIVE_ESTIMATOR.pdf}
+\caption{Indicator diagnostics. Physical $\eta$ has units C/m, whereas $\|e\|_E$ has units $\sqrt{\mathrm{J/m}}$. For a dimensionless display only, $\eta$ is divided by $\sqrt{\epsilon_0}$ and the reference norm; the requested unscaled ratio $\eta/\|e\|_E$ is also stored. The dimensionless diagnostic ratio increases from about $5.61$ to $10.0$ on the primary path: it has not stabilised and is not an effectivity constant or guaranteed error bound.}
+\label{fig:adaptive-estimator}
+\end{figure}
+
+The primary reference error decreases throughout, but $\eta$ decreases initially and rises again over the last levels. The indicator guides localisation in this experiment; the results are not sufficient to support a calibrated error-based stopping rule. All corrected A/B cycles satisfy potential bounds, symmetry, residual, matrix-symmetry, charge-balance, material and conformity checks; the failed first attempt remains explicitly archived.
+
+\paragraph{What this comparison shows.}
+Moving from fixed grading to residual-driven marking let the computed solution guide mesh refinement. We implemented the material-weighted flux-jump indicator, D\"orfler marking and symmetry/conformity closure, and checked the errors using triangle overlays. At $0.30$, the adaptive method used about $18\%$ fewer DOFs and $19\%$ fewer nonzeros than uniform refinement, but took about $1.83$ times its cumulative algorithm time. The size reduction supports the localisation hypothesis; the timing result shows why it cannot be extended to a claim that adaptivity is always faster. This conclusion applies to the tested indicator, marking parameter and accuracy range.
+
+\subsection{Technical contributions and scope of novelty}
+Conforming $P_1$ FEM, residual flux-jump indicators and D\"orfler marking are established methods; we do not claim to introduce them. The project-specific contribution is finding a faulty common-triangulation assumption in the graded comparison, replacing it with tested triangle-overlay integration, and using the same error definition and physical model to compare three refinement strategies. The negative timing result is part of this comparison: selecting a smaller final system can still cost more overall.
+
+\paragraph{Does the experiment recover ideal DOF efficiency?}
+For smooth two-dimensional $P_1$ approximation on shape-regular meshes, energy error of order $h$ corresponds to $N^{-1/2}$. Fitting $\log E_{\rm rel}$ against $\log N$ gives Table~\ref{tab:adaptive-rates}. The primary M6-referenced slopes are $-0.3620$ over A0--A7 and $-0.2470$ over A3--A7. M7 gives the same qualitative conclusion. All points are retained, including the slower late range. These data do not demonstrate recovery of the ideal $N^{-1/2}$ rate; the observed DOF saving at one moderate target is a different statement.
+\begin{table}[H]\centering\small
+\caption{Empirical adaptive DOF slopes from existing data. These finite-window regressions are descriptive and do not establish estimator optimality.}
+\input{tables/ae_adaptive_rates.tex}\label{tab:adaptive-rates}
+\end{table}
+\begin{figure}[H]\centering
+\includegraphics[width=.86\textwidth]{ae_revision/adaptive_empirical_rates.pdf}
+\caption{All primary adaptive points against DOFs. The $N^{-1/2}$ line is anchored at A0 only for slope comparison; it is not an error bound. The late decay is shallower.}
+\label{fig:adaptive-rates}
+\end{figure}
+
+\paragraph{Marking-parameter sensitivity.}
+A separate eight-cycle study used $\theta=0.3,0.5,0.7$, with the same M1-S start, model, M6/M7 references, five measured repetitions and cumulative accounting. All 24 cycles passed the geometry, potential, symmetry, residual, charge and overlay checks. The primary value remains $0.5$; no earlier result was discarded or retuned.
+\begin{table}[H]\centering\small
+\caption{Supplementary marking study from the first integrated rerun. Equal cycle counts do not imply matched work. The full raw cycle data and time samples are retained separately.}
+\input{tables/ae_theta.tex}\label{tab:theta}
+\end{table}
+\begin{figure}[H]\centering
+\includegraphics[width=\textwidth]{ae_revision/theta_sensitivity.pdf}
+\caption{The same three marking parameters against measured DOFs and cumulative time. Larger $\theta$ refines more rapidly per cycle; that does not by itself establish better work efficiency. Open points are reference-sensitive.}
+\label{fig:theta}
+\end{figure}
