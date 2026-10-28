@@ -9,7 +9,7 @@ The main objective is a reproducible numerical evidence chain, not simply a resu
 
 ## 1. Team
 
-Group C is an instructor-approved six-member team.
+Group C is a six-member team.
 
 | Student | Student ID |
 | --- | --- |
@@ -20,7 +20,6 @@ Group C is an instructor-approved six-member team.
 | Taiqi Zhang | 2363684 |
 | Yujia Ding | 2362094 |
 
-Individual contribution statements will be completed by the team before submission.
 
 ## 2. Physical Model
 
