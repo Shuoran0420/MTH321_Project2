@@ -1,0 +1,546 @@
+Command: /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 code/run_all.py --worker overlay
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Solving unchanged M6/M7 dielectric references once; no all-air solve.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+A0: DOFs=404 E6=0.263719 Sref=0.8467% symmetry=1.759e-15
+A1: DOFs=432 E6=0.227885 Sref=1.1233% symmetry=1.066e-15
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+A2: DOFs=504 E6=0.205606 Sref=1.3255% symmetry=1.994e-15
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+A3: DOFs=666 E6=0.178944 Sref=1.6097% symmetry=1.316e-15
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+A4: DOFs=890 E6=0.166951 Sref=1.6003% symmetry=1.778e-15
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+A5: DOFs=1206 E6=0.155301 Sref=0.9406% symmetry=3.841e-15
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+A6: DOFs=1602 E6=0.143427 Sref=0.2971% symmetry=1.700e-15
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+A7: DOFs=2088 E6=0.135396 Sref=0.4115% symmetry=3.207e-15
+B0: DOFs=114 E6=0.403559 Sref=0.3893% symmetry=2.574e-16
+B1: DOFs=134 E6=0.349517 Sref=0.5217% symmetry=5.405e-16
+B2: DOFs=210 E6=0.307685 Sref=0.6603% symmetry=5.838e-16
+B3: DOFs=314 E6=0.262712 Sref=0.8545% symmetry=1.280e-15
+B4: DOFs=386 E6=0.246360 Sref=0.8786% symmetry=5.380e-16
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+B5: DOFs=536 E6=0.232766 Sref=0.9130% symmetry=8.012e-15
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+B6: DOFs=878 E6=0.211452 Sref=0.9872% symmetry=1.627e-15
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+B7: DOFs=1566 E6=0.181113 Sref=0.8060% symmetry=5.221e-15
+M0: DOFs=35 overlay E6=0.623045 Sref=0.1995%
+M1: DOFs=114 overlay E6=0.403041 Sref=0.4747%
+M2: DOFs=404 overlay E6=0.262690 Sref=1.1067%
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+M3: DOFs=1512 overlay E6=0.169382 Sref=2.6015%
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+M4: DOFs=5840 overlay E6=0.105772 Sref=6.2931%
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+M5: DOFs=22944 overlay E6=0.058814 Sref=16.9256%
+G0: DOFs=123 overlay E6=0.423530 Sref=0.4288%
+G1: DOFs=537 overlay E6=0.260058 Sref=1.1379%
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+G2: DOFs=1422 overlay E6=0.229087 Sref=1.4881%
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+G3: DOFs=5306 overlay E6=0.132845 Sref=4.2922%
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+G4: DOFs=7068 overlay E6=0.086600 Sref=9.0903%
+A0: DOFs=404 E6=0.263719 Sref=0.8467% symmetry=1.759e-15
+A1: DOFs=414 E6=0.235015 Sref=1.0568% symmetry=1.732e-15
+A2: DOFs=450 E6=0.217377 Sref=1.1879% symmetry=1.687e-15
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+A3: DOFs=498 E6=0.207487 Sref=1.1909% symmetry=1.339e-15
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+A4: DOFs=582 E6=0.195887 Sref=1.2899% symmetry=2.540e-15
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+A5: DOFs=722 E6=0.178795 Sref=1.0608% symmetry=1.812e-15
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+A6: DOFs=912 E6=0.171404 Sref=0.8741% symmetry=1.206e-15
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+A7: DOFs=1154 E6=0.160508 Sref=0.4459% symmetry=1.454e-15
+A0: DOFs=404 E6=0.263719 Sref=0.8467% symmetry=1.759e-15
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+A1: DOFs=462 E6=0.218853 Sref=1.2035% symmetry=1.572e-15
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+A2: DOFs=688 E6=0.180126 Sref=1.7156% symmetry=2.395e-15
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+A3: DOFs=1214 E6=0.153641 Sref=2.1645% symmetry=1.695e-15
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+A4: DOFs=1814 E6=0.138798 Sref=2.2490% symmetry=8.900e-15
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+A5: DOFs=2209 E6=0.127775 Sref=0.6331% symmetry=4.660e-15
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+A6: DOFs=2761 E6=0.115758 Sref=0.4165% symmetry=5.633e-15
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+A7: DOFs=4507 E6=0.105466 Sref=1.7500% symmetry=4.518e-15
+ADAPTIVE DATA GENERATION COMPLETE; interpretation still requires validation.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+{
+  "checks": {
+    "six_or_more_main_cycles": true,
+    "same_geometry_material_domain_BC_P1": true,
+    "potential_bounds": true,
+    "continuous_potential_symmetry": true,
+    "matrix_symmetry": true,
+    "normalized_residual": true,
+    "charge_balance": true,
+    "CE_CQ_consistency": true,
+    "positive_CE": true,
+    "reference_sensitivity_recorded": true,
+    "complete_overlay": true,
+    "five_timing_repetitions": true,
+    "all_frozen_numerical_files_unchanged": true
+  },
+  "targets": [
+    {
+      "target": 0.4,
+      "adaptive_path": "M0-S companion",
+      "support_status": "FORMAL",
+      "formal_claim_allowed": true,
+      "uniform_DOFs": 116.580969029344,
+      "uniform_NNZ": 524.6584534526064,
+      "uniform_total_time": 0.002874913236686207,
+      "uniform_bracket": "M1/M2",
+      "uniform_sensitivity": 0.01106705693739701,
+      "uniform_weight": 0.017694677215478335,
+      "graded_DOFs": 146.1903736967392,
+      "graded_NNZ": 670.4797526691386,
+      "graded_total_time": 0.004016563696983026,
+      "graded_bracket": "G0/G1",
+      "graded_sensitivity": 0.011379492289902223,
+      "graded_weight": 0.1171961841590227,
+      "adaptive_DOFs": 115.14097913008122,
+      "adaptive_NNZ": 513.3751620113409,
+      "adaptive_total_time": 0.0026697602380520795,
+      "adaptive_bracket": "B0/B1",
+      "adaptive_sensitivity": 0.005216827727348931,
+      "adaptive_weight": 0.061610686518388594,
+      "uniform_over_adaptive_DOFs": 1.012506319732056,
+      "graded_over_adaptive_DOFs": 1.2696641526000898,
+      "uniform_over_adaptive_NNZ": 1.0219786469549073,
+      "graded_over_adaptive_NNZ": 1.3060229677693818,
+      "uniform_over_adaptive_total_time": 1.0768432294818397,
+      "graded_over_adaptive_total_time": 1.5044660714228053
+    },
+    {
+      "target": 0.3,
+      "adaptive_path": "M0-S companion",
+      "support_status": "FORMAL",
+      "formal_claim_allowed": true,
+      "uniform_DOFs": 272.83832286127245,
+      "uniform_NNZ": 1428.806314770695,
+      "uniform_total_time": 0.0067638933189136845,
+      "uniform_bracket": "M1/M2",
+      "uniform_sensitivity": 0.01106705693739701,
+      "uniform_weight": 0.6897483521488166,
+      "graded_DOFs": 348.70999525108937,
+      "graded_NNZ": 1850.564961980573,
+      "graded_total_time": 0.009279140858563741,
+      "graded_bracket": "G0/G1",
+      "graded_sensitivity": 0.011379492289902223,
+      "graded_weight": 0.7070474609883239,
+      "adaptive_DOFs": 223.96852233174323,
+      "adaptive_NNZ": 1156.6576008506656,
+      "adaptive_total_time": 0.01282014597620945,
+      "adaptive_bracket": "B2/B3",
+      "adaptive_sensitivity": 0.008545310970265159,
+      "adaptive_weight": 0.1600803238777493,
+      "uniform_over_adaptive_DOFs": 1.2181994149032382,
+      "graded_over_adaptive_DOFs": 1.5569598424843758,
+      "uniform_over_adaptive_NNZ": 1.2352889167199328,
+      "graded_over_adaptive_NNZ": 1.5999246108957155,
+      "uniform_over_adaptive_total_time": 0.5275987755104777,
+      "graded_over_adaptive_total_time": 0.7237936974963617
+    },
+    {
+      "target": 0.2,
+      "adaptive_path": "M1-S primary (M2-resolution)",
+      "support_status": "EXPLORATORY_REFERENCE_SENSITIVE",
+      "formal_claim_allowed": false,
+      "uniform_DOFs": 917.3148011754921,
+      "uniform_NNZ": 5516.993172513728,
+      "uniform_total_time": 0.02377788850675816,
+      "uniform_bracket": "M2/M3",
+      "uniform_sensitivity": 0.026015439235817735,
+      "uniform_weight": 0.6213457982978107,
+      "graded_DOFs": 1974.2284095921277,
+      "graded_NNZ": 12327.743501723562,
+      "graded_total_time": 0.055472561298560916,
+      "graded_bracket": "G2/G3",
+      "graded_sensitivity": 0.04292192043745437,
+      "graded_weight": 0.24917968520339198,
+      "adaptive_DOFs": 532.7485689070575,
+      "adaptive_NNZ": 3079.84420072608,
+      "adaptive_total_time": 0.039056769225780066,
+      "adaptive_bracket": "A2/A3",
+      "adaptive_sensitivity": 0.016096777300006186,
+      "adaptive_weight": 0.199033545480744,
+      "uniform_over_adaptive_DOFs": 1.721853149333425,
+      "graded_over_adaptive_DOFs": 3.705741366217633,
+      "uniform_over_adaptive_NNZ": 1.7913221620798494,
+      "graded_over_adaptive_NNZ": 4.0027165980724835,
+      "uniform_over_adaptive_total_time": 0.6088032619724002,
+      "graded_over_adaptive_total_time": 1.4203059392312802
+    }
+  ],
+  "matched_work": [
+    {
+      "uniform": "M2",
+      "adaptive": "A0",
+      "DOF_ratio_max_over_min": 1.0,
+      "uniform_DOFs": 404.0,
+      "adaptive_DOFs": 404.0,
+      "uniform_E_rel": 0.2626900637934297,
+      "adaptive_E_rel": 0.2637187651798106,
+      "uniform_CE": 1.2914384649018526e-10,
+      "adaptive_CE": 1.2914384649018528e-10,
+      "uniform_total_time": 0.010039958055131137,
+      "adaptive_total_time": 0.008951541967689991,
+      "formal": true
+    },
+    {
+      "uniform": "M2",
+      "adaptive": "A1",
+      "DOF_ratio_max_over_min": 1.0693069306930694,
+      "uniform_DOFs": 404.0,
+      "adaptive_DOFs": 432.0,
+      "uniform_E_rel": 0.2626900637934297,
+      "adaptive_E_rel": 0.22788536628157696,
+      "uniform_CE": 1.2914384649018526e-10,
+      "adaptive_CE": 1.270149615061683e-10,
+      "uniform_total_time": 0.010039958055131137,
+      "adaptive_total_time": 0.021611916890833527,
+      "formal": true
+    },
+    {
+      "uniform": "M2",
+      "adaptive": "A2",
+      "DOF_ratio_max_over_min": 1.2475247524752475,
+      "uniform_DOFs": 404.0,
+      "adaptive_DOFs": 504.0,
+      "uniform_E_rel": 0.2626900637934297,
+      "adaptive_E_rel": 0.205605655806905,
+      "uniform_CE": 1.2914384649018526e-10,
+      "adaptive_CE": 1.2584070077735463e-10,
+      "uniform_total_time": 0.010039958055131137,
+      "adaptive_total_time": 0.03593275079037994,
+      "formal": true
+    },
+    {
+      "uniform": "M3",
+      "adaptive": "A5",
+      "DOF_ratio_max_over_min": 1.2537313432835822,
+      "uniform_DOFs": 1512.0,
+      "adaptive_DOFs": 1206.0,
+      "uniform_E_rel": 0.1693821183273764,
+      "adaptive_E_rel": 0.15530136916122175,
+      "uniform_CE": 1.2427340332721335e-10,
+      "adaptive_CE": 1.2354076436976007e-10,
+      "uniform_total_time": 0.04021254199324176,
+      "adaptive_total_time": 0.1157132929074578,
+      "formal": true
+    },
+    {
+      "uniform": "M3",
+      "adaptive": "A6",
+      "DOF_ratio_max_over_min": 1.0595238095238095,
+      "uniform_DOFs": 1512.0,
+      "adaptive_DOFs": 1602.0,
+      "uniform_E_rel": 0.1693821183273764,
+      "adaptive_E_rel": 0.14342737894591673,
+      "uniform_CE": 1.2427340332721335e-10,
+      "adaptive_CE": 1.230534503937099e-10,
+      "uniform_total_time": 0.04021254199324176,
+      "adaptive_total_time": 0.16219812515191734,
+      "formal": true
+    },
+    {
+      "uniform": "M3",
+      "adaptive": "A7",
+      "DOF_ratio_max_over_min": 1.380952380952381,
+      "uniform_DOFs": 1512.0,
+      "adaptive_DOFs": 2088.0,
+      "uniform_E_rel": 0.1693821183273764,
+      "adaptive_E_rel": 0.13539640463868988,
+      "uniform_CE": 1.2427340332721335e-10,
+      "adaptive_CE": 1.2272120616867955e-10,
+      "uniform_total_time": 0.04021254199324176,
+      "adaptive_total_time": 0.2377263339003548,
+      "formal": true
+    }
+  ]
+}

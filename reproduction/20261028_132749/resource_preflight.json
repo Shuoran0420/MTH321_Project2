@@ -1,0 +1,8 @@
+{
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "available_memory_bytes": 8589934592.0,
+  "required_available_memory_bytes": 4294967296,
+  "free_disk_bytes": 612758835200,
+  "execution": "serial subprocesses; M7 maximum; no M8",
+  "decision": "FEASIBLE"
+}

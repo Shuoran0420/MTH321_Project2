@@ -1,0 +1,41 @@
+{
+  "integration": "triangle_overlay",
+  "legacy_shortcut": "REJECTED_WHEN_CROSSED",
+  "common_refinement_diagnostics": [
+    {
+      "level": "G0",
+      "coordinate_subset": true,
+      "crossed_triangles": 4736,
+      "crossed_area_fraction": 0.010125066778600315,
+      "valid": false
+    },
+    {
+      "level": "G1",
+      "coordinate_subset": true,
+      "crossed_triangles": 9216,
+      "crossed_area_fraction": 0.02049936083339692,
+      "valid": false
+    },
+    {
+      "level": "G2",
+      "coordinate_subset": true,
+      "crossed_triangles": 21440,
+      "crossed_area_fraction": 0.04554332738685794,
+      "valid": false
+    },
+    {
+      "level": "G3",
+      "coordinate_subset": true,
+      "crossed_triangles": 42440,
+      "crossed_area_fraction": 0.08934204297202926,
+      "valid": false
+    },
+    {
+      "level": "G4",
+      "coordinate_subset": true,
+      "crossed_triangles": 36392,
+      "crossed_area_fraction": 0.07612989689861095,
+      "valid": false
+    }
+  ]
+}

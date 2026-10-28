@@ -1,0 +1,13 @@
+experiment,status,evidence
+Gate A,PASS,physical/logs/gate_A_verification.txt
+Gate B,PASS,physical/logs/gate_B_checks.txt
+Gate C,PASS,physical/logs/gate_C_domain.txt
+Gate D,PASS,physical/logs/gate_D_uniform.txt
+Gate F,PASS,physical/logs/gate_F_capacitance.txt
+Gate G,PASS,physical/logs/gate_G_air.txt
+Gate H,PASS,physical/logs/gate_H_impedance.txt
+uniform/graded exact overlay,PASS,overlay_adaptive/results/adaptive_extension/
+adaptive A0-A7,PASS,overlay_adaptive/results/adaptive_extension/
+companion B0-B7,PASS,overlay_adaptive/results/adaptive_extension/
+theta 0.3/0.5/0.7,PASS,overlay_adaptive/results/adaptive_extension/
+layered fitted + unresolved controls,PASS,physical/results/ae_revision/layered_interface_verification.csv

@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "output_directory": "reproduction_runs/20261028_134044",
+  "stages": {
+    "physical_A_D_F_H_runtime_s": 111.64393470803043,
+    "overlay_E_adaptive_runtime_s": 83.51848645799328
+  },
+  "runtime_s": 195.88356445799582,
+  "resource_preflight": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "available_memory_bytes": 9277129359.36,
+    "required_available_memory_bytes": 4294967296,
+    "free_disk_bytes": 612434153472,
+    "execution": "serial subprocesses; M7 maximum; no M8",
+    "decision": "FEASIBLE"
+  },
+  "numerical_checks_passed": 208,
+  "FINAL_MESH_ID": "uniform_M7_8H_neumann_P1_v1",
+  "FINAL_MESH_SHA256": "06b7c06b25667d77c4292d49764ec42234006b041eab922e5563dfb8669b6f75",
+  "original_protected_files_unchanged": true,
+  "changed_original_files": []
+}
