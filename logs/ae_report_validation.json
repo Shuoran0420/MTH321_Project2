@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "pages": 35,
+  "compile": "XeLaTeX/latexmk + BibTeX success; final forced build warning-free",
+  "warnings": [],
+  "checked_evidence_paths": 37,
+  "ICS_tail_sha256": "9bf9638a2b5f910a62020c8bac1b3a0807051bc66f6e74ad8e3f5a9522f3e15b",
+  "ICS_unchanged": true,
+  "rendered_pages": 35,
+  "visually_inspected_key_pages": [
+    9,
+    15,
+    19,
+    20,
+    23,
+    29
+  ],
+  "no_simulations_for_report_compile": true,
+  "bibliography_keys": [
+    "hackbusch2017",
+    "hiptmair2025",
+    "quarteroni2017"
+  ],
+  "engineering_sources": "specialised footnotes, outside three-entry bibliography",
+  "visually_inspected_final_book_pages": [
+    6,
+    28,
+    30
+  ],
+  "final_backend_warnings": []
+}

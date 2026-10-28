@@ -1,0 +1,219 @@
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+RUN /Library/Frameworks/Python.framework/Versions/3.13/bin/python3 code/run_all.py --worker analysis
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+{
+  "checks": {
+    "six_or_more_main_cycles": true,
+    "same_geometry_material_domain_BC_P1": true,
+    "potential_bounds": true,
+    "continuous_potential_symmetry": true,
+    "matrix_symmetry": true,
+    "normalized_residual": true,
+    "charge_balance": true,
+    "CE_CQ_consistency": true,
+    "positive_CE": true,
+    "reference_sensitivity_recorded": true,
+    "complete_overlay": true,
+    "five_timing_repetitions": true,
+    "all_frozen_numerical_files_unchanged": true
+  },
+  "targets": [
+    {
+      "target": 0.4,
+      "adaptive_path": "M0-S companion",
+      "support_status": "FORMAL",
+      "formal_claim_allowed": true,
+      "uniform_DOFs": 116.580969029344,
+      "uniform_NNZ": 524.6584534526064,
+      "uniform_total_time": 0.00307769207424085,
+      "uniform_bracket": "M1/M2",
+      "uniform_sensitivity": 0.01106705693739701,
+      "uniform_weight": 0.017694677215478335,
+      "graded_DOFs": 146.1903736967392,
+      "graded_NNZ": 670.4797526691386,
+      "graded_total_time": 0.003923621652530644,
+      "graded_bracket": "G0/G1",
+      "graded_sensitivity": 0.011379492289902223,
+      "graded_weight": 0.1171961841590227,
+      "adaptive_DOFs": 115.14097913008122,
+      "adaptive_NNZ": 513.3751620113409,
+      "adaptive_total_time": 0.002759980668207515,
+      "adaptive_bracket": "B0/B1",
+      "adaptive_sensitivity": 0.005216827727348931,
+      "adaptive_weight": 0.061610686518388594,
+      "uniform_over_adaptive_DOFs": 1.012506319732056,
+      "graded_over_adaptive_DOFs": 1.2696641526000898,
+      "uniform_over_adaptive_NNZ": 1.0219786469549073,
+      "graded_over_adaptive_NNZ": 1.3060229677693818,
+      "uniform_over_adaptive_total_time": 1.1151136345602284,
+      "graded_over_adaptive_total_time": 1.4216120053764225
+    },
+    {
+      "target": 0.3,
+      "adaptive_path": "M0-S companion",
+      "support_status": "FORMAL",
+      "formal_claim_allowed": true,
+      "uniform_DOFs": 272.83832286127245,
+      "uniform_NNZ": 1428.806314770695,
+      "uniform_total_time": 0.0071512488397292885,
+      "uniform_bracket": "M1/M2",
+      "uniform_sensitivity": 0.01106705693739701,
+      "uniform_weight": 0.6897483521488166,
+      "graded_DOFs": 348.70999525108937,
+      "graded_NNZ": 1850.564961980573,
+      "graded_total_time": 0.009303440653871165,
+      "graded_bracket": "G0/G1",
+      "graded_sensitivity": 0.011379492289902223,
+      "graded_weight": 0.7070474609883239,
+      "adaptive_DOFs": 223.96852233174323,
+      "adaptive_NNZ": 1156.6576008506656,
+      "adaptive_total_time": 0.013109078228921408,
+      "adaptive_bracket": "B2/B3",
+      "adaptive_sensitivity": 0.008545310970265159,
+      "adaptive_weight": 0.1600803238777493,
+      "uniform_over_adaptive_DOFs": 1.2181994149032382,
+      "graded_over_adaptive_DOFs": 1.5569598424843758,
+      "uniform_over_adaptive_NNZ": 1.2352889167199328,
+      "graded_over_adaptive_NNZ": 1.5999246108957155,
+      "uniform_over_adaptive_total_time": 0.5455188164147282,
+      "graded_over_adaptive_total_time": 0.7096944950214579
+    },
+    {
+      "target": 0.2,
+      "adaptive_path": "M1-S primary (M2-resolution)",
+      "support_status": "EXPLORATORY_REFERENCE_SENSITIVE",
+      "formal_claim_allowed": false,
+      "uniform_DOFs": 917.3148011754921,
+      "uniform_NNZ": 5516.993172513728,
+      "uniform_total_time": 0.024108091784310275,
+      "uniform_bracket": "M2/M3",
+      "uniform_sensitivity": 0.026015439235817735,
+      "uniform_weight": 0.6213457982978107,
+      "graded_DOFs": 1974.2284095921277,
+      "graded_NNZ": 12327.743501723562,
+      "graded_total_time": 0.054609203197048956,
+      "graded_bracket": "G2/G3",
+      "graded_sensitivity": 0.04292192043745437,
+      "graded_weight": 0.24917968520339198,
+      "adaptive_DOFs": 532.7485689070575,
+      "adaptive_NNZ": 3079.84420072608,
+      "adaptive_total_time": 0.03899319757501576,
+      "adaptive_bracket": "A2/A3",
+      "adaptive_sensitivity": 0.016096777300006186,
+      "adaptive_weight": 0.199033545480744,
+      "uniform_over_adaptive_DOFs": 1.721853149333425,
+      "graded_over_adaptive_DOFs": 3.705741366217633,
+      "uniform_over_adaptive_NNZ": 1.7913221620798494,
+      "graded_over_adaptive_NNZ": 4.0027165980724835,
+      "uniform_over_adaptive_total_time": 0.6182640379243259,
+      "graded_over_adaptive_total_time": 1.4004802527925766
+    }
+  ],
+  "matched_work": [
+    {
+      "uniform": "M2",
+      "adaptive": "A0",
+      "DOF_ratio_max_over_min": 1.0,
+      "uniform_DOFs": 404.0,
+      "adaptive_DOFs": 404.0,
+      "uniform_E_rel": 0.2626900637934297,
+      "adaptive_E_rel": 0.2637187651798106,
+      "uniform_CE": 1.2914384649018526e-10,
+      "adaptive_CE": 1.2914384649018528e-10,
+      "uniform_total_time": 0.010554000000411179,
+      "adaptive_total_time": 0.00876945899653947,
+      "formal": true
+    },
+    {
+      "uniform": "M2",
+      "adaptive": "A1",
+      "DOF_ratio_max_over_min": 1.0693069306930694,
+      "uniform_DOFs": 404.0,
+      "adaptive_DOFs": 432.0,
+      "uniform_E_rel": 0.2626900637934297,
+      "adaptive_E_rel": 0.22788536628157696,
+      "uniform_CE": 1.2914384649018526e-10,
+      "adaptive_CE": 1.270149615061683e-10,
+      "uniform_total_time": 0.010554000000411179,
+      "adaptive_total_time": 0.021355291006329935,
+      "formal": true
+    },
+    {
+      "uniform": "M2",
+      "adaptive": "A2",
+      "DOF_ratio_max_over_min": 1.2475247524752475,
+      "uniform_DOFs": 404.0,
+      "adaptive_DOFs": 504.0,
+      "uniform_E_rel": 0.2626900637934297,
+      "adaptive_E_rel": 0.205605655806905,
+      "uniform_CE": 1.2914384649018526e-10,
+      "adaptive_CE": 1.2584070077735463e-10,
+      "uniform_total_time": 0.010554000000411179,
+      "adaptive_total_time": 0.035882080999726895,
+      "formal": true
+    },
+    {
+      "uniform": "M3",
+      "adaptive": "A5",
+      "DOF_ratio_max_over_min": 1.2537313432835822,
+      "uniform_DOFs": 1512.0,
+      "adaptive_DOFs": 1206.0,
+      "uniform_E_rel": 0.1693821183273764,
+      "adaptive_E_rel": 0.15530136916122175,
+      "uniform_CE": 1.2427340332721335e-10,
+      "adaptive_CE": 1.2354076436976007e-10,
+      "uniform_total_time": 0.03988283299986506,
+      "adaptive_total_time": 0.11623887400492094,
+      "formal": true
+    },
+    {
+      "uniform": "M3",
+      "adaptive": "A6",
+      "DOF_ratio_max_over_min": 1.0595238095238095,
+      "uniform_DOFs": 1512.0,
+      "adaptive_DOFs": 1602.0,
+      "uniform_E_rel": 0.1693821183273764,
+      "adaptive_E_rel": 0.14342737894591673,
+      "uniform_CE": 1.2427340332721335e-10,
+      "adaptive_CE": 1.230534503937099e-10,
+      "uniform_total_time": 0.03988283299986506,
+      "adaptive_total_time": 0.17737066499103094,
+      "formal": true
+    },
+    {
+      "uniform": "M3",
+      "adaptive": "A7",
+      "DOF_ratio_max_over_min": 1.380952380952381,
+      "uniform_DOFs": 1512.0,
+      "adaptive_DOFs": 2088.0,
+      "uniform_E_rel": 0.1693821183273764,
+      "adaptive_E_rel": 0.13539640463868988,
+      "uniform_CE": 1.2427340332721335e-10,
+      "adaptive_CE": 1.2272120616867955e-10,
+      "uniform_total_time": 0.03988283299986506,
+      "adaptive_total_time": 0.2697911229915917,
+      "formal": true
+    }
+  ]
+}
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+Transforming over 1000 vertices to C_CONTIGUOUS.
+Transforming over 1000 elements to C_CONTIGUOUS.
+{'status': 'PASS', 'runtime_s': 7.0693225839640945, 'FINAL_MESH_SHA256': '06b7c06b25667d77c4292d49764ec42234006b041eab922e5563dfb8669b6f75'}
+exit=0

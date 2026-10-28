@@ -1,0 +1,21 @@
+Gate D uniform mesh convergence
+
+Fixed domain: W/H=8, Hair/H=8; homogeneous Neumann far boundary.
+Uniform refinement: every base grid interval is split by midpoint at each level; no local corner refinement is used.
+Analysis levels: [0, 1, 2, 3]; R0=M4; R1=M5; R2=M6.
+R2 feasibility estimate before solve: elements=180224, DOFs=90944, approximate_NNZ=631225, approximate_memory_MB=14.16.
+R2 actual: elements=180224, DOFs=90944, NNZ=627889.
+Cross-mesh transfer: coarse P1 gradients are evaluated on the nested reference mesh elements; coefficient vectors are never subtracted directly.
+Reference self-difference ||R1-R0||_E=9.662663e-07, relative=8.776073e-02.
+Reference self-difference ||R2-R1||_E=6.464435e-07, relative=5.881442e-02.
+Pairwise observed orders: [0.6284082712466794, 0.6175659992038832, 0.6330800544381371]
+Candidate fit windows:
+- [0, 1, 2]: slope_R1=0.638307, slope_R2=0.622987, max_sensitivity=2.706753e-02, slope_rel_change=2.459176e-02, max_log_fit_deviation=2.505e-03, monotone=True
+- [1, 2, 3]: slope_R1=0.663899, slope_R2=0.625323, max_sensitivity=6.383746e-02, slope_rel_change=6.168927e-02, max_log_fit_deviation=3.585e-03, monotone=True
+- [0, 1, 2, 3]: slope_R1=0.653496, slope_R2=0.625473, max_sensitivity=6.383746e-02, slope_rel_change=4.480368e-02, max_log_fit_deviation=3.550e-03, monotone=True
+Final fitted asymptotic order=0.622987; fit levels=[0, 1, 2]; max log fit deviation=2.505e-03.
+Slope using R1 on final window=0.638307; slope using R2=0.622987; absolute change=1.532035e-02; relative change=2.459176e-02.
+Reference sensitivity on fit levels: [0.006182887074086598, 0.012411197195359481, 0.0270675252252155].
+The final fit window is selected from monotone error reduction, reference stability, and fit stability, not from the largest-looking slope.
+Max |E| trend: [790.9068144453577, 988.5285443851202, 1332.0520014491049, 1837.0223048020289].
+Gate D status: PASS
