@@ -12,6 +12,7 @@
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{graphicx}
+\usepackage{tikz}
 
 \definecolor{brandblue}{RGB}{51,51,178}
 \colorlet{mainblue}{brandblue}
@@ -123,67 +124,50 @@
       \end{block}
     \end{column}
   \end{columns}
+\begin{alertblock}{Takeaway}A finite 8H domain approximates the open cross-section.\end{alertblock}
 \end{frame}
 
 \begin{frame}{Weak form and P1 FEM}
-  \begin{block}{Weak problem}
-    Find $\phi\in V_g$ such that
-    \[
-      \int_{\Omega}\varepsilon\nabla\phi\cdot\nabla v\,d\Omega=0
-      \quad\forall v\in V_0 .
-    \]
-  \end{block}
-  \begin{columns}[T]
-    \begin{column}{0.49\textwidth}
-      \begin{block}{Discretisation}
-        \begin{itemize}
-          \item Conforming triangular $P_1$ elements.
-          \item Trace interior removed from the field domain.
-          \item Dirichlet dofs eliminated before solving.
-        \end{itemize}
-      \end{block}
-    \end{column}
-    \begin{column}{0.47\textwidth}
-      \begin{block}{Material interface}
-        $\phi_h$ is continuous across the air-substrate line. Flux balance is enforced weakly by elementwise integration of discontinuous $\varepsilon$.
-      \end{block}
-    \end{column}
-  \end{columns}
-  \vspace{0.35em}
-  \begin{alertblock}{Takeaway}
-    The model keeps the conductor boundary, material jump and artificial boundary conditions explicit.
-  \end{alertblock}
+\begin{block}{Weak problem}
+Find $\phi\in V_g$ such that $\displaystyle\int_{\Omega}\varepsilon\nabla\phi\cdot\nabla v\,d\Omega=0$ for all $v\in\mathcal V$.
+\end{block}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{block}{Discretisation}
+\begin{itemize}\item Conforming triangular $P_1$ elements.\item Trace interior excluded; Dirichlet DOFs eliminated.\item Positive permittivity gives an SPD free system.\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{Material interface}
+Potential is continuous; flux balance holds in the \textbf{weak sense}. Discrete normal fluxes need not match pointwise on each edge.
+\end{block}
+\end{column}
+\end{columns}
+\begin{alertblock}{Takeaway}The weak form handles the material jump; stability and convergence rate are different questions.\end{alertblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
 \section{Verification}
 % ---------------------------------------------------------------------
 
-\begin{frame}{Solver verification: manufactured solution}
-  \begin{columns}[T]
-    \begin{column}{0.57\textwidth}
-      \includegraphics[width=0.93\linewidth]{mms_convergence_report.png}
-    \end{column}
-    \begin{column}{0.39\textwidth}
-      \begin{block}{Known exact solution}
-        \[
-          u(x,y)=\sin(\pi x)\sin(\pi y)
-        \]
-        Observed rates: $p_{L^2}\approx2$, $p_E\approx1$.
-      \end{block}
-      \begin{block}{Microstrip baseline checks}
-        \begin{tabular}{@{}lr@{}}
-          Potential & $0\le\phi_h\le1$\\
-          Symmetry error & $3.24\times10^{-14}$\\
-          $\|r_F\|_\infty$ & $3.10\times10^{-25}$\\
-          $\delta_{EQ}$ & $2.54\times10^{-15}$
-        \end{tabular}
-      \end{block}
-    \end{column}
-  \end{columns}
-  \begin{alertblock}{Takeaway}
-    MMS checks solver accuracy; baseline diagnostics check the assembled microstrip problem.
-  \end{alertblock}
+\begin{frame}{Solver Verification: Smooth and Layered Problems}
+\begin{columns}[T]
+\begin{column}{0.59\textwidth}
+\centering
+\includegraphics[width=0.84\linewidth,trim=360 0 0 0,clip]{ae_revision/layered_interface_verification.pdf}
+\end{column}
+\begin{column}{0.37\textwidth}
+\begin{block}{Layered interface}
+\textbf{Analytical}: dashed black\\
+\textcolor{blue}{\textbf{Fitted}}: agrees near roundoff\\
+\textcolor{orange}{\textbf{Unresolved}}: flux error at interface
+\end{block}
+\begin{block}{Smooth MMS}
+Observed orders: $L^2\approx2$, energy $\approx1$.
+\end{block}
+\end{column}
+\end{columns}
+\begin{alertblock}{Takeaway}A small residual cannot by itself verify the material interface.\end{alertblock}
 \end{frame}
 
 \begin{frame}{Domain truncation and the 8H choice}
@@ -205,80 +189,69 @@
         \end{tabular}
       \end{block}
       \begin{block}{Mesh-adequacy repeat}
-        Finer 12H repeat changed $C$ by about $0.0360\%$.
+        Finer 12H repeat: $0.0360\%$. 8H reduces the tested difference versus 5H ($0.182\%$ vs $0.714\%$).
       \end{block}
     \end{column}
   \end{columns}
   \begin{alertblock}{Takeaway}
-    The final 8H domain is a controlled cost-accuracy choice, not an assumed infinite-domain result.
+    The $0.182\%$ is a matched-core production sensitivity, not a strict M7 truncation-error bound.
   \end{alertblock}
 \end{frame}
 
 \begin{frame}{Corner singularity and uniform convergence}
-  \begin{columns}[T]
-    \begin{column}{0.58\textwidth}
-      \includegraphics[width=0.94\linewidth]{uniform_energy_convergence.png}
-    \end{column}
-    \begin{column}{0.38\textwidth}
-      \begin{block}{What limits the rate}
-        \begin{itemize}
-          \item Trace corners concentrate electric field.
-          \item Lower corners also meet the material interface.
-        \end{itemize}
-      \end{block}
-      \begin{block}{Observed energy fit}
-        \[
-          p_E \approx 0.623
-        \]
-      \end{block}
-    \end{column}
-  \end{columns}
-  \begin{alertblock}{Takeaway}
-    The reduced rate is consistent with corner- and interface-limited regularity.
-  \end{alertblock}
+\begin{columns}[T]
+\begin{column}{0.57\textwidth}\includegraphics[width=0.88\linewidth]{uniform_energy_convergence.png}\end{column}
+\begin{column}{0.39\textwidth}
+\begin{block}{Observed energy rate}
+Coarse fit M0--M2: $p_E\approx0.623$ using M6 reference; $\approx0.638$ using M5.
+\end{block}
+\begin{block}{Interpretation}
+Corner and interface fields reduce regularity. The fitted rate depends on the reference and window.
+\end{block}
+\end{column}
+\end{columns}
+\begin{alertblock}{Takeaway}This is an observed coarse-mesh rate, not an exact singular exponent.\end{alertblock}
 \end{frame}
 
-\begin{frame}{Uniform vs graded refinement}
-  \begin{columns}[T]
-    \begin{column}{0.63\textwidth}
-      \includegraphics[width=\linewidth]{error_vs_dofs.png}
-    \end{column}
-    \begin{column}{0.33\textwidth}
-      \begin{block}{Cost metrics checked}
-        \begin{itemize}
-          \item DOFs
-          \item NNZ
-          \item Measured median time
-        \end{itemize}
-      \end{block}
-      \begin{block}{Reference-stable targets}
-        Recorded relative errors: $0.40$ and $0.30$.
-      \end{block}
-      \begin{alertblock}{Result}
-        Recorded estimates favoured uniform refinement in DOFs, NNZ and time. A new geometry audit requires common-overlay validation before precise efficiency claims.
-      \end{alertblock}
-    \end{column}
-  \end{columns}
+\begin{frame}{Why the Original Comparison Needed Correction}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\centering
+\includegraphics[width=0.94\linewidth,trim=360 0 0 240,clip]{ae_revision/uniform_graded_corner_mesh.pdf}\\[-0.2em]
+{\scriptsize G2 corner mesh; M2: 404 DOFs, G2: 1,422 DOFs.}\\
+{\scriptsize Geometry illustration only; costs differ.}
+\end{column}
+\begin{column}{0.48\textwidth}
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm,scale=0.85]
+\draw[blue!65!black,very thick] (0,0)--(3,1.9);
+\draw[orange!90!black,very thick] (0.45,1.6)--(2.65,1.55)--(2.05,0.2)--cycle;
+\draw[->,red,very thick] (2.8,0.3)--(1.73,1.09);
+\node[font=\scriptsize,align=center] at (1.5,-0.35) {Reference triangle crosses\\a coarse-element edge};
+\end{tikzpicture}\\[0.15em]
+{\scriptsize Schematic: blue = coarse edge; orange = reference triangle.}\\[0.4em]
+{\footnotesize \textbf{Fix:} integrate on the triangle overlay.}
+\end{column}
+\end{columns}
+\begin{alertblock}{Takeaway}Coordinate nesting does not ensure triangle nesting; the overlay resolves crossings.\end{alertblock}
 \end{frame}
 
 \begin{frame}{Residual-driven adaptive refinement}
-  \begin{columns}[T]
-    \begin{column}{0.43\textwidth}
-      \includegraphics[width=\linewidth]{../figures/adaptive_extension/adaptive_final_mesh_slide.pdf}
-      \begin{block}{Solution-driven marking}
-        Flux-jump indicator; D\"orfler $\theta=0.5$.\\
-        Primary: 404 to 2088 DOFs.\\
-        Same $8H$ model, $P_1$ and direct solver.
-      \end{block}
-    \end{column}
-    \begin{column}{0.55\textwidth}
-      \includegraphics[width=0.92\linewidth]{../figures/adaptive_extension/adaptive_dofs_slide.pdf}
-    \end{column}
-  \end{columns}
-  \begin{alertblock}{Matched-error result: $E_{\rm rel}=0.30$}
-    About $18\%$ fewer DOFs than uniform, but $1.83\times$ the cumulative time.\\
-    M0-S companion; exact-overlay M6 error with M7 reference check.
-  \end{alertblock}
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}\includegraphics[width=\linewidth]{../figures/adaptive_extension/adaptive_dofs_slide.pdf}\end{column}
+\begin{column}{0.44\textwidth}
+\begin{block}{At $E_{\rm rel}=0.30$}
+{\Large\textbf{$\sim18\%$ fewer DOFs}}\\
+\scriptsize Interpolated: adaptive 224 vs uniform 273 (M0-S).
+\end{block}
+\begin{block}{Original cumulative time}
+{\Large\textbf{$1.83\times$ uniform}}\\
+\scriptsize Includes preceding adaptive cycles.
+\end{block}
+\end{column}
+\end{columns}
+{\scriptsize Empirical error-versus-DOF slopes: $-0.362$ overall; $-0.247$ later.}
+\begin{alertblock}{Takeaway}Ideal $N^{-1/2}$ efficiency was not demonstrated.\end{alertblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -296,8 +269,8 @@
         \[
           C=120.620\,\mathrm{pF/m}
         \]
-        M6$\to$M7 change: $0.156\%$\\
-        Preferred QC target: $0.1\%$
+        M6$\to$M7 change: $0.1556\%$\\
+        Preferred QC target: $0.1\%$ (not reached)
       \end{block}
       \begin{block}{Why M7?}
         \begin{itemize}
@@ -365,7 +338,7 @@
     \end{column}
   \end{columns}
   \begin{alertblock}{Takeaway}
-    Engineering formulas support the scale of the answer, while verification and convergence support the FEM result.
+    Approximate benchmarks, not exact solutions. Sources: Hammerstad--Jensen (1980); IPC-2141 (1996).
   \end{alertblock}
 \end{frame}
 
@@ -374,36 +347,29 @@
 % ---------------------------------------------------------------------
 
 \begin{frame}{Conclusions and limitations}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Final reported values}
-        \begin{tabular}{@{}lr@{}}
-          \toprule
-          Quantity & Value\\
-          \midrule
-          $C$ & $120.620\,\mathrm{pF/m}$\\
-          $\Cair$ & $35.9682\,\mathrm{pF/m}$\\
-          $\epseff$ & $3.3535$\\
-          $\Zzero$ & $50.642\,\Omega$\\
-          \bottomrule
-        \end{tabular}
-      \end{block}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{What the model leaves out}
-        \begin{itemize}
-          \item Losses, surface roughness and fabrication tolerances are omitted.
-          \item The quasi-static model does not capture full-wave dispersion or radiation.
-          \item Finite-domain and spatial-discretisation sensitivity remain.
-        \end{itemize}
-      \end{block}
-    \end{column}
-  \end{columns}
-  \vspace{0.6em}
-  Residual adaptivity reduced approximation size at $E_{\rm rel}=0.30$, but not cumulative runtime.
-  \begin{alertblock}{Main message}
-    This is not just a FEM result. It is a verified numerical evidence chain from PDE model to engineering impedance.
-  \end{alertblock}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{block}{Evidence and result}
+\begin{itemize}
+\item Smooth and layered analytical tests check the solver.
+\item Triangle overlay corrected the cross-mesh comparison.
+\item $C=120.620\,\mathrm{pF/m}$; $\Cair=35.9682\,\mathrm{pF/m}$.
+\item $\epseff=3.3535$; $\Zzero=50.642\,\Omega$.
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{Limits}
+\begin{itemize}
+\item Adaptive refinement saved DOFs, not cumulative time; ideal rate unproven.
+\item M7 and finite-domain sensitivities remain.
+\item Recorded Apple M2 run: 58 tests, 208 numerical comparisons passed; cross-platform install unverified.
+\item Quasi-static model omits losses and radiation.
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+\begin{alertblock}{Takeaway}A numerical result is credible when its verification and limitations are both visible.\end{alertblock}
 \end{frame}
 
 \end{document}
