@@ -41,13 +41,6 @@ Overall technical certification: NOT YET COMPLETE for a newly integrated end-to-
 - FEM impedance: `50.64197383662741 ohm`.
 - Primary HJ-denominator discrepancies: FEM `0.8790393846587151%`; IPC `1.6081463779974263%`.
 
-## Remaining Work
-
-1. Integrate the validated standalone exact-overlay comparison into a renewed full-pipeline certification before claiming revised Gate-I/J PASS.
-2. The tested indicator/closure is not proven optimal; eta is not a calibrated stopping criterion and runtime gains are not general.
-3. The six Group C members will write their own individual contribution statements. The user confirmed instructor approval for six members; names and IDs are filled.
-
-Reproduce only the new experiment with `python3 code/residual_adaptive_study.py`, then `python3 code/adaptive_analysis.py`, using `requirements-adaptive.txt`. The current evidence generator does not overwrite the old numerical tables or figures. Methods and all changed files are recorded in `audit/residual_adaptive_method.md` and `CHANGELOG_ADAPTIVE.md`.
 
 ## Regression and Deliverables
 
