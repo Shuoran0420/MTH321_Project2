@@ -1,0 +1,168 @@
+{
+  "results": [
+    {
+      "check": "uniform field phi exact (eps_r=1.0, 4x3)",
+      "status": "PASS",
+      "value": "1.11e-16 V",
+      "detail": "max|phi-phi_exact|"
+    },
+    {
+      "check": "capacitance exact eps_r*eps0*A/d (eps_r=1.0, 4x3)",
+      "status": "PASS",
+      "value": "0.00e+00",
+      "detail": "C_h=1.7708375626e-11 C_exact=1.7708375626e-11"
+    },
+    {
+      "check": "energy vs reaction capacitance (eps_r=1.0, 4x3)",
+      "status": "PASS",
+      "value": "0.00e+00",
+      "detail": "|CE-CQ|/CE"
+    },
+    {
+      "check": "uniform field phi exact (eps_r=1.0, 9x7)",
+      "status": "PASS",
+      "value": "8.88e-16 V",
+      "detail": "max|phi-phi_exact|"
+    },
+    {
+      "check": "capacitance exact eps_r*eps0*A/d (eps_r=1.0, 9x7)",
+      "status": "PASS",
+      "value": "1.82e-16",
+      "detail": "C_h=1.7708375626e-11 C_exact=1.7708375626e-11"
+    },
+    {
+      "check": "energy vs reaction capacitance (eps_r=1.0, 9x7)",
+      "status": "PASS",
+      "value": "2.92e-15",
+      "detail": "|CE-CQ|/CE"
+    },
+    {
+      "check": "uniform field phi exact (eps_r=4.4, 4x3)",
+      "status": "PASS",
+      "value": "1.11e-16 V",
+      "detail": "max|phi-phi_exact|"
+    },
+    {
+      "check": "capacitance exact eps_r*eps0*A/d (eps_r=4.4, 4x3)",
+      "status": "PASS",
+      "value": "1.66e-16",
+      "detail": "C_h=7.7916852753e-11 C_exact=7.7916852753e-11"
+    },
+    {
+      "check": "energy vs reaction capacitance (eps_r=4.4, 4x3)",
+      "status": "PASS",
+      "value": "3.32e-16",
+      "detail": "|CE-CQ|/CE"
+    },
+    {
+      "check": "uniform field phi exact (eps_r=4.4, 9x7)",
+      "status": "PASS",
+      "value": "4.44e-16 V",
+      "detail": "max|phi-phi_exact|"
+    },
+    {
+      "check": "capacitance exact eps_r*eps0*A/d (eps_r=4.4, 9x7)",
+      "status": "PASS",
+      "value": "1.66e-16",
+      "detail": "C_h=7.7916852753e-11 C_exact=7.7916852753e-11"
+    },
+    {
+      "check": "energy vs reaction capacitance (eps_r=4.4, 9x7)",
+      "status": "PASS",
+      "value": "1.33e-15",
+      "detail": "|CE-CQ|/CE"
+    },
+    {
+      "check": "two-layer series capacitance",
+      "status": "PASS",
+      "value": "0.00e+00",
+      "detail": "C_h=1.6507807787e-11 C_exact=1.6507807787e-11"
+    },
+    {
+      "check": "two-layer piecewise-constant field",
+      "status": "PASS",
+      "value": "2.89e-15 V/m",
+      "detail": "E1=0.423729 E2=1.864407"
+    },
+    {
+      "check": "normal D continuous across interface",
+      "status": "PASS",
+      "value": "5.87e-16",
+      "detail": "|D_below-D_above|/|D|"
+    },
+    {
+      "check": "zero normal flux on outer Neumann boundary",
+      "status": "PASS",
+      "value": "1.89e-16",
+      "detail": "max|reaction| on far nodes / max|Q|"
+    },
+    {
+      "check": "total induced charge is zero",
+      "status": "PASS",
+      "value": "4.15e-16",
+      "detail": "(Q_trace+Q_ground)/scale"
+    },
+    {
+      "check": "trace potential equals V0",
+      "status": "PASS",
+      "value": "1",
+      "detail": "V"
+    },
+    {
+      "check": "ground potential equals 0",
+      "status": "PASS",
+      "value": "0",
+      "detail": "V"
+    },
+    {
+      "check": "discrete maximum principle 0<=phi<=V0",
+      "status": "PASS",
+      "value": "[0.000e+00, 1.000e+00]",
+      "detail": "V"
+    },
+    {
+      "check": "stiffness matrix symmetric",
+      "status": "PASS",
+      "value": "0.00e+00",
+      "detail": "max|K-K^T|"
+    },
+    {
+      "check": "reduced matrix positive definite",
+      "status": "PASS",
+      "value": "lambda_min=2.269639e-14 lambda_max=1.056162e-09",
+      "detail": "cond=4.653e+04"
+    },
+    {
+      "check": "nested uniform family: energy decreases monotonically",
+      "status": "PASS",
+      "value": "M0=1.677030e-10 M1=1.404316e-10 M2=1.291438e-10 M3=1.242734e-10",
+      "detail": "Galerkin: C_h >= C_exact and C_h non-increasing under nesting"
+    }
+  ],
+  "uniform_family": [
+    [
+      0,
+      1.6770300248008024e-10,
+      44,
+      35
+    ],
+    [
+      1,
+      1.404316321631312e-10,
+      176,
+      114
+    ],
+    [
+      2,
+      1.2914384649018528e-10,
+      704,
+      404
+    ],
+    [
+      3,
+      1.2427340332721335e-10,
+      2816,
+      1512
+    ]
+  ]
+}

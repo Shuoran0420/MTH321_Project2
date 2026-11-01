@@ -1,0 +1,62 @@
+[
+  {
+    "mesh": "M4",
+    "elements": 11264,
+    "DOFs": 5840,
+    "C_frozen": 1.221589621769137e-10,
+    "C_recomputed": 1.2215896217691375e-10,
+    "rel_diff": 4.232091314732417e-16,
+    "assembly_time_s": 0.007271624985150993,
+    "solve_time_s": 0.018520459008868784,
+    "total_wall_s": 0.02831604197854176,
+    "frozen_assembly_time_s": 0.10483275004662573,
+    "frozen_solve_time_s": 0.010505666956305504,
+    "delta_EQ": 8.464182629464831e-15,
+    "charge_balance_defect": 8.04097349799159e-15
+  },
+  {
+    "mesh": "M5",
+    "elements": 45056,
+    "DOFs": 22944,
+    "C_frozen": 1.2122529164903375e-10,
+    "C_recomputed": 1.2122529164903375e-10,
+    "rel_diff": 0.0,
+    "assembly_time_s": 0.029084625013638288,
+    "solve_time_s": 0.1020486659836024,
+    "total_wall_s": 0.13741966697853059,
+    "frozen_assembly_time_s": 0.3747187089174986,
+    "frozen_solve_time_s": 0.06114891602192074,
+    "delta_EQ": 1.4926403272333728e-15,
+    "charge_balance_defect": 2.324254223834766e-14
+  },
+  {
+    "mesh": "M6",
+    "elements": 180224,
+    "DOFs": 90944,
+    "C_frozen": 1.2080740246554666e-10,
+    "C_recomputed": 1.2080740246554666e-10,
+    "rel_diff": 0.0,
+    "assembly_time_s": 0.09930379199795425,
+    "solve_time_s": 0.5800133330048993,
+    "total_wall_s": 0.7012669580290094,
+    "frozen_assembly_time_s": 1.612297874991782,
+    "frozen_solve_time_s": 0.39375408401247114,
+    "delta_EQ": 2.462817017049261e-13,
+    "charge_balance_defect": 8.56529671524393e-13
+  },
+  {
+    "mesh": "M7",
+    "elements": 720896,
+    "DOFs": 362112,
+    "C_frozen": 1.206197736939107e-10,
+    "C_recomputed": 1.2061977369391069e-10,
+    "rel_diff": 2.143047806396861e-16,
+    "assembly_time_s": 0.40753525000764057,
+    "solve_time_s": 4.433492415992077,
+    "total_wall_s": 4.9486313330125995,
+    "frozen_assembly_time_s": 5.960958000039682,
+    "frozen_solve_time_s": 2.8835939170094207,
+    "delta_EQ": 1.9956061173167575e-12,
+    "charge_balance_defect": 1.1413872616846906e-12
+  }
+]

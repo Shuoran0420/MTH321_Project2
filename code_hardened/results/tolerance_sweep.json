@@ -1,0 +1,72 @@
+{
+  "level": 5,
+  "direct": {
+    "C": 1.2122529164903375e-10,
+    "scaled_residual": 1.4076099305020507e-14,
+    "time_s": 0.09732845798134804
+  },
+  "discretisation_error": 0.006298025444513265,
+  "reference_C": 1.2046659e-10,
+  "sweep": [
+    {
+      "cg_rtol": 0.01,
+      "info": 0,
+      "cg_iterations": null,
+      "scaled_residual": 0.00938452484672837,
+      "C": 1.2382269707313382e-10,
+      "algebraic_error": 0.02142626665415632,
+      "algebraic_over_discretisation": 3.402060986086127,
+      "wall_s": 0.1537331669824198
+    },
+    {
+      "cg_rtol": 0.0001,
+      "info": 0,
+      "cg_iterations": null,
+      "scaled_residual": 5.201062722576324e-05,
+      "C": 1.2122537534636304e-10,
+      "algebraic_error": 6.904279473956644e-07,
+      "algebraic_over_discretisation": 0.00010962609685820715,
+      "wall_s": 0.48977791698416695
+    },
+    {
+      "cg_rtol": 1e-06,
+      "info": 0,
+      "cg_iterations": null,
+      "scaled_residual": 1.0853830298826263e-06,
+      "C": 1.2122529165413146e-10,
+      "algebraic_error": 4.205151623614843e-11,
+      "algebraic_over_discretisation": 6.676936542513179e-09,
+      "wall_s": 0.6936271250015125
+    },
+    {
+      "cg_rtol": 1e-08,
+      "info": 0,
+      "cg_iterations": null,
+      "scaled_residual": 5.702828050059827e-09,
+      "C": 1.2122529164903425e-10,
+      "algebraic_error": 4.0514523167762974e-15,
+      "algebraic_over_discretisation": 6.432892900275364e-13,
+      "wall_s": 0.8195606250083074
+    },
+    {
+      "cg_rtol": 1e-10,
+      "info": 0,
+      "cg_iterations": null,
+      "scaled_residual": 6.154857385558168e-11,
+      "C": 1.2122529164903375e-10,
+      "algebraic_error": 0.0,
+      "algebraic_over_discretisation": 0.0,
+      "wall_s": 0.9524165000184439
+    },
+    {
+      "cg_rtol": 1e-12,
+      "info": 0,
+      "cg_iterations": null,
+      "scaled_residual": 5.715643081839491e-13,
+      "C": 1.2122529164903375e-10,
+      "algebraic_error": 0.0,
+      "algebraic_over_discretisation": 0.0,
+      "wall_s": 1.074882541957777
+    }
+  ]
+}
