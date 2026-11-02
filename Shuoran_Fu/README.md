@@ -20,7 +20,7 @@ The map gives more detail than commit counts: it identifies the relevant impleme
 
 ## Archived report and presentation drafts
 
-I wrote the first drafts of the report and presentation. The available versions have been copied into this folder so that later team revisions to the working files do not replace this record:
+I wrote the first drafts of the report and presentation. 
 
 - [Report draft snapshot — 35 pages](drafts/Report_Draft_Shuoran_Fu.pdf).
 - [Presentation draft snapshot — 13 slides](drafts/Presentation_Draft_Shuoran_Fu.pdf).
