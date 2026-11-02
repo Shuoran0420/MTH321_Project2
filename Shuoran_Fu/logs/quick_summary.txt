@@ -1,5 +1,0 @@
-Project 2 quick smoke summary
-This file is intentionally separate from results_summary.txt and does not replace full-resolution evidence.
-status=PASS
-runtime_s=7.945940
-FINAL_MESH_SHA256=06b7c06b25667d77c4292d49764ec42234006b041eab922e5563dfb8669b6f75
