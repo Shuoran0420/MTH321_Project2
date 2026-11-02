@@ -3,7 +3,7 @@
 **MTH321 Project 2 · Group C**  
 Student ID: **2362626** · GitHub: [@Shuoran0420](https://github.com/Shuoran0420)
 
-I worked on developing and organising the Python FEM implementation and numerical studies. I also wrote the first drafts of both the report and the presentation, designed their overall structure, and subsequently revised the report's technical sections. This folder connects those responsibilities to the code, saved results and repository history.
+I worked on developing and organising the Python FEM implementation and numerical studies. I also wrote the first drafts of both the report and the presentation.
 
 ## Work and evidence
 
