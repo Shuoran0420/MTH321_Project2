@@ -80,4 +80,4 @@ Quick mode checks saved data and rebuilds supported figures in a separate output
 - [b5eee20](https://github.com/Shuoran0420/MTH321_Project2/commit/b5eee20c50f78abfc16908ccc8efb6fc0aa0d34b): my account uploaded report sources, tables and figures.
 - [Verified commit metadata](commit_evidence.json) records those file lists and upload dates.
 
-These commits document staged uploads rather than the complete development process. The responsibilities above follow my supplied contribution statement; uploading a team file does not by itself establish sole authorship. AI tools assisted with coding, debugging and writing. My work included reviewing their output against the mathematical model and numerical evidence. The separate `code_hardened` work is outside this personal contribution folder.
+These commits document staged uploads rather than the complete development process, AI tools assisted with coding, debugging and writing. My work included reviewing their output against the mathematical model and numerical evidence. The separate `code_hardened` work is outside this personal contribution folder.
