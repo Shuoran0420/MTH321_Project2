@@ -1,0 +1,28 @@
+{
+  "description": "Personal handoff draft snapshots archived before further team revisions. These are the available 35-page report and 13-slide presentation, not a claim to the earliest historical drafts.",
+  "draft_authorship": "Report and presentation initial-draft responsibility was supplied by Shuoran Fu; the saved PDFs retain the team title pages and recorded revisions.",
+  "files": [
+    {
+      "file": "Report_Draft_Shuoran_Fu.pdf",
+      "role": "Report draft snapshot",
+      "source_repository_path": "report/GroupC.pdf",
+      "source_commit": "c10eabfcabcc8c20cf15433ea578962098004b1f",
+      "archived_date": "2026-11-02",
+      "pages": 35,
+      "bytes": 2158887,
+      "sha256": "d17107cc4da3f9b820bc1e79df4bf6426b0311f6797de645d1135e5a5c3a7177",
+      "copied_without_changes": true
+    },
+    {
+      "file": "Presentation_Draft_Shuoran_Fu.pdf",
+      "role": "Presentation draft snapshot",
+      "source_repository_path": "presentation/Team C.pdf",
+      "source_commit": "c10eabfcabcc8c20cf15433ea578962098004b1f",
+      "archived_date": "2026-11-02",
+      "pages": 13,
+      "bytes": 537276,
+      "sha256": "3c26c0a19c551e940e08fb24e0ef265ae9a0a658d89c5afb511008203a1c3d18",
+      "copied_without_changes": true
+    }
+  ]
+}
