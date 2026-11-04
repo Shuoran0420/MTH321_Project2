@@ -1,0 +1,119 @@
+{
+  "results": [
+    {
+      "check": "hand element stiffness == assembled (exact fractions)",
+      "status": "PASS",
+      "value": "0.0e+00",
+      "detail": "max_ij |K_code - eps0*K_hand| / max|K|, eps_r=1"
+    },
+    {
+      "check": "hand rhs of the free row == code rhs",
+      "status": "PASS",
+      "value": "0.0e+00",
+      "detail": "hand=2.656256e-11 code=2.656256e-11"
+    },
+    {
+      "check": "hand solution of the free row == code solution",
+      "status": "PASS",
+      "value": "0.0e+00",
+      "detail": "u_B = 6/5 = 1.2 V, code 1.200000000000000 V"
+    },
+    {
+      "check": "layered box (8x12): elimination == row replacement",
+      "status": "PASS",
+      "value": "8.1e-16",
+      "detail": "max|phi_E - phi_T| / max|g|"
+    },
+    {
+      "check": "layered box (8x12): shipped solver == row replacement",
+      "status": "PASS",
+      "value": "9.6e-16",
+      "detail": "max|phi_S - phi_T| / max|g|"
+    },
+    {
+      "check": "layered box (8x12): free-row residual of the eliminated system",
+      "status": "PASS",
+      "value": "2.0e-14",
+      "detail": "max|K_ff u_f + K_fd g_d| / max|K u|"
+    },
+    {
+      "check": "layered box (8x12): row-replacement solution == closed form",
+      "status": "PASS",
+      "value": "1.1e-15",
+      "detail": "max|phi - phi_exact| / max|g|, layered series field"
+    },
+    {
+      "check": "microstrip: elimination == row replacement",
+      "status": "PASS",
+      "value": "7.8e-15",
+      "detail": "max|phi_E - phi_T|, ground 0 trace 1"
+    },
+    {
+      "check": "microstrip: free-row residual",
+      "status": "PASS",
+      "value": "2.5e-14",
+      "detail": "max|K_ff u_f + K_fd g_d| / max|K u|"
+    },
+    {
+      "check": "microstrip: shift mutants are O(1), the check has teeth",
+      "status": "PASS",
+      "value": "min shift mutant 9.738e-01 V",
+      "detail": "sign flip / drop / double the -K_fd g_d shift"
+    },
+    {
+      "check": "microstrip: the ground-column bug is invisible here (ground = 0 V)",
+      "status": "PASS",
+      "value": "7.8e-15 V",
+      "detail": "dropping the ground columns of the shift is undetectable at round-off"
+    }
+  ],
+  "single_element": {
+    "K_hand": [
+      [
+        "1",
+        "-3/2",
+        "1/2"
+      ],
+      [
+        "-3/2",
+        "5/2",
+        "-1"
+      ],
+      [
+        "1/2",
+        "-1",
+        "1/2"
+      ]
+    ],
+    "rhs_hand": "3",
+    "u_B_hand": "6/5"
+  },
+  "layered_box": {
+    "n": 117,
+    "dirichlet": 18,
+    "d_ET": 8.141635513917814e-16,
+    "d_ST": 9.62193288008469e-16,
+    "residual": 2.017077318099834e-14,
+    "scale": 3.0,
+    "d_exact": 1.1102230246251565e-15,
+    "mutants": {
+      "rhs sign flipped": 1.807017543859649,
+      "shift dropped": 0.9035087719298245,
+      "shift doubled": 0.9035087719298248,
+      "Dirichlet row left as K row": 4.623790378865736e+16,
+      "ground columns dropped from shift": 0.3260233918128656
+    }
+  },
+  "microstrip": {
+    "n": 12078,
+    "dirichlet": 125,
+    "d_ET": 7.799316747991725e-15,
+    "residual": 2.5096275849129654e-14,
+    "mutants": {
+      "rhs sign flipped": 1.9476117264323243,
+      "shift dropped": 0.9738058632161617,
+      "shift doubled": 0.9738058632161635,
+      "ground columns dropped from shift": 7.799316747991725e-15
+    }
+  }
+}
